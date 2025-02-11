@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 import { FlatCompat } from "@eslint/eslintrc"
@@ -30,7 +31,7 @@ const eslintConfig = [
       "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
       "curly": ["error", "all"], // Requiere llaves en todas las estructuras de control (if, for, while)
       "eqeqeq": ["error", "always"], // Prohíbe el uso de `==` en lugar de `===`
-      "quotes": ["error", "double", { "avoidEscape": true }],
+      "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
       "object-curly-spacing": ["error", "always"], // Requiere espacios dentro de `{ objetos }`
       "array-bracket-spacing": ["error", "never"], // No permite espacios dentro de `[ arreglos ]`
       "space-before-function-paren": ["error", "always"], // Espacio antes de `function ()`
