@@ -38,6 +38,8 @@ const eslintConfig = [
       "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
       "@typescript-eslint/no-explicit-any": "error", // Prohíbe el uso de `any`
       "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+      "react/display-name": "off",
+      "import/no-anonymous-default-export": "off",
     },
   }),
 ]
