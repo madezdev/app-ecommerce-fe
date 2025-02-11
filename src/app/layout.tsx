@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Mercado Solar | Tienda Online de Paneles Solares',
+  title: 'MSolar | Tienda Online',
   description: 'Compra paneles solares y soluciones de energía renovable al mejor precio. Energía limpia y sostenible para tu hogar o empresa.',
   keywords: 'energía solar, paneles solares, energía renovable, tienda solar, baterías solares',
   openGraph: {
@@ -28,9 +28,7 @@ export default function RootLayout ({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={'min-h-[100vh]'}
-      >
+      <body>
         {children}
       </body>
     </html>
