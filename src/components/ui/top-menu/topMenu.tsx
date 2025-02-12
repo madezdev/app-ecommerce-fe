@@ -1,75 +1,92 @@
-import { titleFont } from '@/config/fonts'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoCartOutline } from 'react-icons/io5'
+import { IoMenu, IoSearch } from 'react-icons/io5'
+import { PiShoppingCartSimple } from 'react-icons/pi'
+import { Paragraph } from '../font-style/paragraph'
+import { Title } from '../font-style/title'
 
 const menuItems = [
   {
     title: 'Productos',
-    url: '/productos',
+    url: '/products',
   },
   {
     title: 'Calculadora',
-    url: '/calculadora',
+    url: '/calculator',
   },
   {
     title: 'Contacto',
-    url: '/contacto',
+    url: '/contact',
   },
 ]
 
 export const TopMenu = () => {
   return (
-    <nav className='flex justify-between items-center bg-transparent w-full pl-[180px] relative mt-[48px]'>
-      <div className='bg-sgreen p-4 flex items-center justify-between w-full h-[80px]'>
+    <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px] mt-[24px] lg:mt-[48px] '>
+      {/* navBar green */}
+      <div className='flex justify-between items-center w-full h-[96px] ml-[20px] bg-sgreen rounded-tl-full rounded-bl-full'>
         {/* Logo */}
-        <Link href='/'
-          className='flex flex-col items-center justify-center bg-nwhite p-2 absolute rounded-full left-[120px] w-[212px] h-[96px] shadow-md'>
-          <span className={`${titleFont.className}`}>Mercado Solar</span>
-          <span className={`${titleFont.className}`}>Mercado Solar</span>
-        </Link>
-        {/* Center menu */}
-        <div className='flex items-center justify-center ml-[280px]'>
-          <ul className='flex justify-between items-center gap-6 w-full'>
+        <div>
+          <Link href='/'
+            className='flex justify-center items-center w-[50px] h-[50px] lg:w-[280px] lg:h-[104px] ml-4 lg:ml-0 bg-nwhite rounded-full shadow-lg'>
+            <div className='flex justify-center items-center w-full h-full'>
+              <Image
+                src='/images/logo.png'
+                width={70}
+                height={70}
+                alt='Mercado Solar'
+              />
+              <Title element='h2' size='2xl' weight='700' className='text-2xl hidden lg:block'>Mercado Solar</Title>
+            </div>
+          </Link>
+        </div>
+        {/* menu */}
+        <div className='hidden xl:flex'>
+          <ul className='flex justify-center items-center space-x-4'>
             {menuItems.map((item, index) => (
               <li key={index}>
-                <Link href={item.url}>
-                  <p className='text-nwhite'>{item.title}</p>
+                <Link href={item.url} >
+                  <Paragraph size='lg' color='nwhite' className='hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>{item.title}</Paragraph>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-        {/* Buscador */}
-        <div>
+        {/* buscador */}
+        <div className='relative flex '>
           <input
             type='text'
             placeholder='Buscar'
-            className='bg-nwhite rounded-full p-2'
+            className='w-[150px] md:w-[300px] lg:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] text-ngrey'
           />
+          <IoSearch className='absolute top-[50%] left-[10px] transform -translate-y-1/2 text-ngrey'/>
         </div>
-        {/* user and cart */}
-        <div className='flex items-center gap-4'>
-          <div className='flex items-center gap-4'>
+        <div className='flex justify-end items-center gap-2'>
+          {/* menu + user */}
+          <div className='flex justify-end items-center gap-4 lg:mr-[20px]'>
             <Link href='/login'>
-              <p className='text-nwhite'>Iniciar Sesión</p>
+              <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Usuario</Paragraph>
             </Link>
+            <button>
+              <IoMenu className='lg:hidden w-[40px] h-[40px] text-nwhite' />
+              <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Menu</Paragraph>
+            </button>
+          </div>
+          {/* cart */}
+          <div className='mr-[20px] xl:mr-[80px]'>
             <Link href="/cart" className="mx-2">
-              <div className="relative p-2 rounded-full bg-pyellow">
-                <span className="absolute text-xs px-2 py-1 rounded-full font-bold -top-3 -right-3 bg-porange text-nwhite">
+              <div className="relative">
+                <span className="absolute text-xs px-2 py-1 rounded-full font-bold -top-2 -right-2 bg-sblue text-white">
                   3
                 </span>
-                <IoCartOutline className="w-5 h-5 text-nwhite" />
+                <div className='rounded-full bg-porange p-2'>
+                  <PiShoppingCartSimple className="w-[24px] h-[24px] text-nwhite hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150"  />
+                </div>
               </div>
             </Link>
           </div>
-          <button
-          // onClick={ openSideMenu }
-            className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 text-nwhite">
-          Menú
-          </button>
         </div>
-        {/* Menu */}
       </div>
     </nav>
   )

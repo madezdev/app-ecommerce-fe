@@ -15,6 +15,7 @@ export default {
         sblue: '#1E3A5F',
         nwhite: '#FFFFFF',
         ngrey: '#333333',
+        error: '#FF0000',
       },
     },
   },

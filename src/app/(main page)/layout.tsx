@@ -6,7 +6,7 @@ export default function Layout ({
  children: React.ReactNode;
 }) {
   return (
-    <main className='min-h-screen'>
+    <main className='min-h-screen overflow-x-hidden'>
       <TopMenu />
       {children}
     </main>
