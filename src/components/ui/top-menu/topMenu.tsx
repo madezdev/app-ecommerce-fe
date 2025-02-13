@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -5,6 +6,7 @@ import { IoMenu, IoSearch } from 'react-icons/io5'
 import { PiShoppingCartSimple } from 'react-icons/pi'
 import { Paragraph } from '../font-style/paragraph'
 import { Title } from '../font-style/title'
+import { useUIStore } from '@/store/sidebar.store'
 
 const menuItems = [
   {
@@ -22,6 +24,7 @@ const menuItems = [
 ]
 
 export const TopMenu = () => {
+  const openSideMenu = useUIStore( state => state.openSideMenu )
   return (
     <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px] mt-[24px] lg:mt-[48px] '>
       {/* navBar green */}
@@ -68,7 +71,9 @@ export const TopMenu = () => {
             <Link href='/login'>
               <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Usuario</Paragraph>
             </Link>
-            <button>
+            <button
+              onClick={openSideMenu}
+            >
               <IoMenu className='lg:hidden w-[40px] h-[40px] text-nwhite' />
               <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Menu</Paragraph>
             </button>
