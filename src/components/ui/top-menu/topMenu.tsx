@@ -65,9 +65,9 @@ export const TopMenu = () => {
           <input
             type='text'
             placeholder='Buscar'
-            className='w-[150px] md:w-[300px] lg:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] text-ngrey'
+            className='w-[170px] md:w-[300px] lg:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] ml-4 text-ngrey'
           />
-          <IoSearch className='absolute top-[50%] left-[10px] transform -translate-y-1/2 text-ngrey'/>
+          <IoSearch className='absolute top-[50%] left-[30px] transform -translate-y-1/2 text-ngrey'/>
         </div>
         <div className='flex justify-end items-center gap-2'>
           {/* menu + user */}
