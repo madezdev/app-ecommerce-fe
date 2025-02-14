@@ -1,27 +1,34 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoMenu, IoSearch } from 'react-icons/io5'
-import { PiShoppingCartSimple } from 'react-icons/pi'
+import { IoBookOutline, IoMenu, IoSearch } from 'react-icons/io5'
+import { PiShoppingCartSimple, PiSolarPanelLight } from 'react-icons/pi'
 import { Paragraph } from '../font-style/paragraph'
 import { Title } from '../font-style/title'
+import { useUIStore } from '@/store/sidebar.store'
+import { CiCalculator1 } from 'react-icons/ci'
 
 const menuItems = [
   {
     title: 'Productos',
     url: '/products',
+    icon: <PiSolarPanelLight size={ 20 } className='text-[#333333]'/>
+  },
+  {
+    title: 'Blog',
+    url: '/quote',
+    icons: <IoBookOutline size={ 20 } className='text-[#333333]'/>
   },
   {
     title: 'Calculadora',
     url: '/calculator',
-  },
-  {
-    title: 'Contacto',
-    url: '/contact',
-  },
+    icons: <CiCalculator1 size={ 20 } className='text-[#333333]'/>
+  }
 ]
 
 export const TopMenu = () => {
+  const openSideMenu = useUIStore( state => state.openSideMenu )
   return (
     <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px] mt-[24px] lg:mt-[48px] '>
       {/* navBar green */}
@@ -58,9 +65,9 @@ export const TopMenu = () => {
           <input
             type='text'
             placeholder='Buscar'
-            className='w-[150px] md:w-[300px] lg:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] text-ngrey'
+            className='w-[170px] md:w-[300px] lg:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] ml-4 text-ngrey'
           />
-          <IoSearch className='absolute top-[50%] left-[10px] transform -translate-y-1/2 text-ngrey'/>
+          <IoSearch className='absolute top-[50%] left-[30px] transform -translate-y-1/2 text-ngrey'/>
         </div>
         <div className='flex justify-end items-center gap-2'>
           {/* menu + user */}
@@ -68,7 +75,9 @@ export const TopMenu = () => {
             <Link href='/login'>
               <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Usuario</Paragraph>
             </Link>
-            <button>
+            <button
+              onClick={openSideMenu}
+            >
               <IoMenu className='lg:hidden w-[40px] h-[40px] text-nwhite' />
               <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Menu</Paragraph>
             </button>
