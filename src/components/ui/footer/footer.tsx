@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { paragraph } from '@/config/fonts'
+import ImageSlider from './slice'
 
 export const Footer = () => {
   return (
@@ -29,11 +30,11 @@ export const Footer = () => {
           </p>
         </div>
         <div>
-          
+          <ImageSlider />
         </div>
         {/* subscription */}
         <div className='flex flex-col justify-center items-center bg-sgreen w-full rounded-[16px] p-4'>
-          <div className='flex justify-center items-center space-x-4'>
+          <div className='flex justify-center items-center'>
             <Image
               src='/images/mail.svg'
               width={40}
@@ -43,7 +44,7 @@ export const Footer = () => {
             />
             <p className='text-nwhite text-[20px]'>Suscríbete a nuestro boletín.</p>
           </div>
-          <div className='flex flex-col justify-center items-center space-x-4'>
+          <div className='flex flex-col justify-center items-center'>
             <input
               type='text'
               placeholder='Correo electrónico'
