@@ -8,6 +8,7 @@ import { Paragraph } from '../font-style/paragraph'
 import { Title } from '../font-style/title'
 import { useUIStore } from '@/store/sidebar.store'
 import { CiCalculator1 } from 'react-icons/ci'
+import { Logo } from '../logo/logo'
 
 const menuItems = [
   {
@@ -35,18 +36,7 @@ export const TopMenu = () => {
       <div className='flex justify-between items-center w-full h-[96px] ml-[20px] bg-sgreen rounded-tl-full rounded-bl-full'>
         {/* Logo */}
         <div>
-          <Link href='/'
-            className='flex justify-center items-center w-[50px] h-[50px] lg:w-[280px] lg:h-[104px] ml-4 lg:ml-0 bg-nwhite rounded-full shadow-lg'>
-            <div className='flex justify-center items-center w-full h-full'>
-              <Image
-                src='/images/logo.png'
-                width={70}
-                height={70}
-                alt='Mercado Solar'
-              />
-              <Title element='h2' size='2xl' weight='700' className='text-2xl hidden lg:block'>Mercado Solar</Title>
-            </div>
-          </Link>
+          <Logo />
         </div>
         {/* menu */}
         <div className='hidden xl:flex'>
