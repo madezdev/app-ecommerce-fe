@@ -1,3 +1,4 @@
+import { Footer } from '@/components/ui/footer/footer'
 import { Sidebar } from '@/components/ui/sidebar/sidebar'
 import { TopMenu } from '@/components/ui/top-menu/topMenu'
 
@@ -7,10 +8,11 @@ export default function Layout ({
  children: React.ReactNode;
 }) {
   return (
-    <main className='min-h-screen overflow-x-hidden'>
+    <main className='min-h-screen overflow-x-hidden flex flex-col justify-between'>
       <TopMenu />
       <Sidebar />
       {children}
+      <Footer />
     </main>
   )
 }
