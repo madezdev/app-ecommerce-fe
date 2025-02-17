@@ -7,7 +7,7 @@ export const RowInfo = () => {
   return (
     <section className='flex justify-between gap-2 items-center w-full '>
       {images.map((image, index) => (
-        <article key={index} className='flex flex-col justify-between items-center w-full max-w-[370px] h-[262px] overflow-hidden shadow-lg border border-nwhite/50 p-1 rounded-md  backdrop-blur-sm bg-nwhite/20'>
+        <article key={index} className='flex flex-col justify-between items-center w-full max-w-[370px] h-[262px] xl:h-[224px] overflow-hidden shadow-lg border border-nwhite/50 p-1 rounded-md  backdrop-blur-sm bg-nwhite/20'>
           <Image
             src={image.src}
             width={120}
