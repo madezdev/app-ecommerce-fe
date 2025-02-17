@@ -5,9 +5,9 @@ import { images } from '@/utils/info-footer'
 
 export const RowInfo = () => {
   return (
-    <section className='flex justify-between items-center w-full '>
+    <section className='flex justify-between gap-2 items-center w-full '>
       {images.map((image, index) => (
-        <article key={index} className='flex flex-col justify-between items-center w-full max-w-[370px] h-[262px] overflow-hidden shadow-lg border border-nwhite/50 p-4 rounded-md  backdrop-blur-sm bg-nwhite/20'>
+        <article key={index} className='flex flex-col justify-between items-center w-full max-w-[370px] h-[262px] overflow-hidden shadow-lg border border-nwhite/50 p-1 rounded-md  backdrop-blur-sm bg-nwhite/20'>
           <Image
             src={image.src}
             width={120}
@@ -15,7 +15,7 @@ export const RowInfo = () => {
             alt={image.text}
             className='w-[120px] object-cover'
           />
-          <div className='p-3 mb-4'>
+          <div className='p-3 mb-4 h-full'>
             <p className={`${paragraph.className} text-[14px] text-white text-center`}>{image.text}</p>
           </div>
         </article>

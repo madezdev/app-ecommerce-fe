@@ -14,7 +14,7 @@ export const Footer = () => {
     >
       <div className='flex flex-col justify-center items-center gap-4 w-full px-[40px] lg:px-[180px]'>
         {/* logo */}
-        <div className=' lg:flex lg:self-start justify-center items-center gap-4'>
+        <div className=' xl:flex xl:self-start justify-center items-center gap-4'>
           <Link href='/'
             className='flex justify-center items-center p-4 bg-nwhite rounded-full shadow-lg'>
             <Image
@@ -26,8 +26,8 @@ export const Footer = () => {
             />
           </Link>
           {/* Informations */}
-          <div className='max-w-[600px]'>
-            <p className={` ${paragraph.className} text-nwhite text-[16px] lg:text-[20px] text-center lg:text-left`}>
+          <div className='max-w-[600px] mt-4 xl:mt-0'>
+            <p className={` ${paragraph.className} text-nwhite text-[16px] lg:text-[20px] text-center xl:text-left text-pretty`}>
             Mercado Solar es una plataforma de comercio electrónico que permite a los usuarios comprar productos de energía solar.
             </p>
           </div>
@@ -39,8 +39,8 @@ export const Footer = () => {
           <RowInfo />
         </div>
         {/* subscription */}
-        <div className='flex flex-col lg:flex-row justify-center lg:justify-between items-center bg-sgreen w-full rounded-[16px] p-4'>
-          <div className='flex justify-center items-center'>
+        <div className='flex flex-col xl:flex-row gap-4 justify-center lg:justify-between items-center bg-sgreen w-full rounded-[16px] p-4'>
+          <div className='flex justify-center items-center lg:justify-start gap-4 w-full flex-grow'>
             <Image
               src='/images/mail.svg'
               width={40}
@@ -50,14 +50,14 @@ export const Footer = () => {
             />
             <p className='text-nwhite text-[20px]'>Suscríbete a nuestro boletín.</p>
           </div>
-          <div className='flex flex-col lg:flex-row justify-center items-center gap-4'>
+          <div className='flex flex-col md:flex-row md:flex-shrink justify-center items-center gap-4 w-full'>
             <input
               type='text'
               placeholder='Correo electrónico'
-              className='w-[300px] lg:w-[500px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] ml-4 text-ngrey'
+              className='w-full xl:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] ml-4 text-ngrey'
             />
             <button
-              className='w-[300px] h-[40px] bg-porange rounded-full mt-4 lg:mt-0'
+              className='w-full md:w-[200px] h-[40px] bg-porange rounded-full mt-4 md:mt-0'
             >
               <span className='text-nwhite text-[14px]'>
                 Suscribirse
@@ -65,7 +65,7 @@ export const Footer = () => {
             </button>
           </div>
         </div>
-        <div className='flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-4 w-full'>
+        <div className='flex flex-col lg:flex-row justify-center lg:justify-between items-stretch gap-4 w-full'>
           {/* card btn repentance */}
           <div className='w-full flex flex-col justify-center items-center flex-1 border border-nwhite/50 p-4 rounded-md  backdrop-blur-sm bg-nwhite/20'>
             <p className='text-nwhite text-[14px]'>Boton de arrepentimiento</p>
