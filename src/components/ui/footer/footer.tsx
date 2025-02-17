@@ -50,20 +50,22 @@ export const Footer = () => {
             />
             <p className='text-nwhite text-[20px]'>Suscríbete a nuestro boletín.</p>
           </div>
-          <div className='flex flex-col md:flex-row md:flex-shrink justify-center items-center gap-4 w-full'>
+          <form className='flex flex-col md:flex-row md:flex-shrink justify-center items-center gap-4 w-full'>
             <input
-              type='text'
+              type='email'
+              required
               placeholder='Correo electrónico'
               className='w-full xl:w-[400px] h-[40px] bg-nwhite rounded-full pl-[40px] lg:pr-[20px] ml-4 text-ngrey'
             />
             <button
               className='w-full md:w-[200px] h-[40px] bg-porange rounded-full mt-4 md:mt-0'
+              type='submit'
             >
               <span className='text-nwhite text-[14px]'>
                 Suscribirse
               </span>
             </button>
-          </div>
+          </form>
         </div>
         <div className='flex flex-col lg:flex-row justify-center lg:justify-between items-stretch gap-4 w-full'>
           {/* card btn repentance */}
