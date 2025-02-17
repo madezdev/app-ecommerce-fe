@@ -3,11 +3,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { paragraph } from '@/config/fonts'
 import ImageSlider from './slice'
+import { menuItems } from '@/utils/navigations'
+import { Paragraph } from '../font-style/paragraph'
 
 export const Footer = () => {
   return (
     <footer
-      className=' bg-sblue flex flex-col justify-between items-center py-[40px] lg:py-[80px]'
+      className=' bg-sblue flex flex-col justify-between items-center pt-[40px] lg:py-[80px]'
     >
       <div className='flex flex-col justify-center items-center gap-4 w-full px-[40px]'>
         {/* logo */}
@@ -59,7 +61,6 @@ export const Footer = () => {
             </button>
           </div>
         </div>
-        {/* social media */}
 
         {/* card btn repentance */}
         <div className='w-full flex flex-col justify-center items-center border border-nwhite/50 p-4 rounded-md  backdrop-blur-sm bg-nwhite/20'>
@@ -79,6 +80,22 @@ export const Footer = () => {
             </span>
           </button>
         </div>
+        <div className='border border-nwhite/50 w-full'/>
+        {/* Navigation */}
+        <div className='flex justify-center items-center gap-4'>
+          <ul className='flex justify-center items-center gap-4'>
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                <Link href={item.url} >
+                  <Paragraph size='lg' color='nwhite' className='hover:text-porange focus:text-sblue hover:scale-105 transition-all duration-150'>{item.title}</Paragraph>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className='flex justify-center items-center bg-pyellow/50 w-full mt-4 p-2'>
+        <span className='text-[14px] text-ngrey'>Copyright © 1999-2025 MercadoSolar.</span>
       </div>
     </footer>
   )

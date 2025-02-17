@@ -1,32 +1,12 @@
 'use client'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoBookOutline, IoMenu, IoSearch } from 'react-icons/io5'
-import { PiShoppingCartSimple, PiSolarPanelLight } from 'react-icons/pi'
+import { IoMenu, IoSearch } from 'react-icons/io5'
+import { PiShoppingCartSimple  } from 'react-icons/pi'
 import { Paragraph } from '../font-style/paragraph'
-import { Title } from '../font-style/title'
 import { useUIStore } from '@/store/sidebar.store'
-import { CiCalculator1 } from 'react-icons/ci'
 import { Logo } from '../logo/logo'
-
-const menuItems = [
-  {
-    title: 'Productos',
-    url: '/products',
-    icon: <PiSolarPanelLight size={ 20 } className='text-[#333333]'/>
-  },
-  {
-    title: 'Blog',
-    url: '/quote',
-    icons: <IoBookOutline size={ 20 } className='text-[#333333]'/>
-  },
-  {
-    title: 'Calculadora',
-    url: '/calculator',
-    icons: <CiCalculator1 size={ 20 } className='text-[#333333]'/>
-  }
-]
+import { menuItems } from '@/utils/navigations'
 
 export const TopMenu = () => {
   const openSideMenu = useUIStore( state => state.openSideMenu )

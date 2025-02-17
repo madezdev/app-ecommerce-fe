@@ -9,7 +9,7 @@ const images = [
   { src: '/images/Reliable.gif', text: 'Seguridad, de principio a fin ¿No te gusta? ¡Devolvelo! En Mercado Libre, no hay nada que no puedas hacer, porque estás siempre protegido.' }
 ]
 
-const transitionDuration = 1 // Cambia este valor para modificar la duración de la transición
+const transitionDuration = 0.5 // Cambia este valor para modificar la duración de la transición
 
 export default function ImageSlider () {
   const [index, setIndex] = useState(0)
@@ -36,7 +36,7 @@ export default function ImageSlider () {
         <motion.img
           key={images[index].src}
           src={images[index].src}
-          alt='Slide image'
+          alt={images[index].text}
           className='w-[120px] object-cover'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -44,9 +44,17 @@ export default function ImageSlider () {
           transition={{ duration: transitionDuration }}
         />
       </AnimatePresence>
-      <div className='p-3 mb-4'>
-        <p className={`${paragraph.className} text-[14px] text-white text-center`}>{images[index].text}</p>
-      </div>
+      <AnimatePresence mode='wait'>
+        <motion.div
+          className='p-3 mb-4'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: transitionDuration }}
+        >
+          <p className={`${paragraph.className} text-[14px] text-white text-center`}>{images[index].text}</p>
+        </motion.div>
+      </AnimatePresence>
 
       <button
         onClick={prevSlide}
