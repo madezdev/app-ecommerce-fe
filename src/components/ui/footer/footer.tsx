@@ -8,6 +8,7 @@ import { Paragraph } from '../font-style/paragraph'
 import { RowInfo } from './row-info'
 
 export const Footer = () => {
+  //TODO: add social media
   return (
     <footer
       className=' bg-sblue flex flex-col justify-between items-center pt-[40px] '
@@ -25,12 +26,13 @@ export const Footer = () => {
               className=''
             />
           </Link>
-          {/* Informations */}
+          {/* Information */}
           <div className='max-w-[600px] mt-4 xl:mt-0'>
             <p className={` ${paragraph.className} text-nwhite text-[16px] lg:text-[20px] text-center xl:text-left text-pretty`}>
             Mercado Solar es una plataforma de comercio electrónico que permite a los usuarios comprar productos de energía solar.
             </p>
           </div>
+          {/* TODO: add social media */}
         </div>
         <div className='lg:hidden'>
           <ImageSlider />
