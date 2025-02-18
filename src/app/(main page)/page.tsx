@@ -1,11 +1,12 @@
-import { paragraph, titleFont } from '@/config/fonts'
+import { Hero } from '@/components/hero/hero'
 
 export default function Home () {
 
   return (
     <div>
-      <h1 className={titleFont.className}>Home</h1>
-      <h1 className={`${paragraph.className} text-4xl font-extralight`}>Home</h1>
+      <article className='h-[330px] w-full z-0'>
+        <Hero />
+      </article>
 
     </div>
   )

@@ -11,7 +11,7 @@ import { menuItems } from '@/utils/navigations'
 export const TopMenu = () => {
   const openSideMenu = useUIStore( state => state.openSideMenu )
   return (
-    <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px] mt-[24px] lg:mt-[48px] '>
+    <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px]  z-10 '>
       {/* navBar green */}
       <div className='flex justify-between items-center w-full h-[76px] ml-[20px] bg-sgreen rounded-tl-full rounded-bl-full'>
         {/* Logo */}
