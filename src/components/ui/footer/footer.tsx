@@ -11,7 +11,7 @@ export const Footer = () => {
   //TODO: add social media
   return (
     <footer
-      className=' bg-sblue flex flex-col justify-between items-center pt-[40px] '
+      className='relative bg-sblue flex flex-col justify-between items-center pt-[40px] z-10 '
     >
       <div className='flex flex-col justify-center items-center gap-4 w-full px-[40px] lg:px-[180px]'>
         {/* logo */}

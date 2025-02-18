@@ -11,9 +11,9 @@ import { menuItems } from '@/utils/navigations'
 export const TopMenu = () => {
   const openSideMenu = useUIStore( state => state.openSideMenu )
   return (
-    <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px] mt-[24px] lg:mt-[48px] '>
+    <nav className='relative flex justify-center items-center bg-transparent w-full gl:pl-[180px]  z-10 '>
       {/* navBar green */}
-      <div className='flex justify-between items-center w-full h-[96px] ml-[20px] bg-sgreen rounded-tl-full rounded-bl-full'>
+      <div className='flex justify-between items-center w-full h-[76px] ml-[20px] bg-sgreen rounded-tl-full rounded-bl-full'>
         {/* Logo */}
         <div>
           <Logo />
@@ -60,7 +60,7 @@ export const TopMenu = () => {
                   3
                 </span>
                 <div className='rounded-full bg-porange p-2'>
-                  <PiShoppingCartSimple className="w-[24px] h-[24px] text-nwhite hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150"  />
+                  <PiShoppingCartSimple className="w-[24px] h-[24px] text-nwhite hover:text-pyellow focus:text-sblue hover:scale-105 transition-all duration-150"  />
                 </div>
               </div>
             </Link>
