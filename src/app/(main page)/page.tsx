@@ -1,13 +1,17 @@
+import { Bento } from '@/components/bento/bento'
 import { Hero } from '@/components/hero/hero'
 
 export default function Home () {
 
   return (
-    <div>
-      <article className='h-[330px] w-full z-0'>
-        <Hero />
-      </article>
-
+    <div className=''>
+      <Hero />
+      <div className='my-[20px]'>
+        <Bento/>
+      </div>
+      <div>
+        <h2></h2>
+      </div>
     </div>
   )
 }

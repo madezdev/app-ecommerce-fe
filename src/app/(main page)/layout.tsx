@@ -9,14 +9,16 @@ export default function Layout ({
  children: React.ReactNode;
 }) {
   return (
-    <main className='relative min-h-screen overflow-x-hidden flex flex-col justify-between'>
-      <TopInformation />
-      <TopMenu />
+    <div className='relative min-h-screen overflow-x-hidden flex flex-col justify-between'>
+      <div className='absolute top-0 left-0 w-full z-10'>
+        <TopInformation />
+        <TopMenu />
+      </div>
       <Sidebar />
-      <section className='flex-1'>
+      <main className='flex-1'>
         {children}
-      </section>
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }
