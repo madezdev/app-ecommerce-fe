@@ -10,12 +10,14 @@ export default function Layout ({
 }) {
   return (
     <main className='relative min-h-screen overflow-x-hidden flex flex-col justify-between'>
-      <TopInformation />
-      <TopMenu />
+      <div className='absolute top-0 left-0 w-full z-10'>
+        <TopInformation />
+        <TopMenu />
+      </div>
       <Sidebar />
-      <section className='flex-1'>
+      <div className='flex-1'>
         {children}
-      </section>
+      </div>
       <Footer />
     </main>
   )
