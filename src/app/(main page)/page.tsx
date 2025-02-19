@@ -9,6 +9,9 @@ export default function Home () {
       <div className='my-[20px]'>
         <Bento/>
       </div>
+      <div>
+        <h2></h2>
+      </div>
     </div>
   )
 }

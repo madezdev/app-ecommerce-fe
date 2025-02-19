@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
-import { BentoItem } from './bentoItem'
 import Image from 'next/image'
+import { BentoItem } from './bentoItem'
 
 export const Bento = () => {
 
