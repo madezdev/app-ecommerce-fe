@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { BentoItem } from './bentoItem'
+import { BentoItem } from './bento-item'
 
 export const Bento = () => {
 
@@ -29,14 +29,13 @@ export const Bento = () => {
   }, [])
 
   return (
-    <section className="w-full  grid lg:grid-cols-10 auto-rows-[20rem] gap-4 mx-auto px-10 ">
+    <section className="w-full grid lg:grid-cols-10 auto-rows-[20rem] gap-4 mx-auto px-10 ">
       <BentoItem className="col-span-10 lg:col-span-4" title="Climatización" subtitle={'Sistemas solares eficientes para climatización de piscinas.'} imageSlot={'/images/svg/climatizacion.svg'} >
         <Image
           src="/images/img/portada-climatizacion.webp"
           alt="Sistemas solares eficientes para climatización de piscinas."
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="background transition-scale absolute bottom-0 left-0 top-0 -z-10 h-full w-full bg-blue-950 bg-cover bg-center bg-no-repeat opacity-90 bg-blend-luminosity duration-1000 ease-in-out group-hover:scale-110"
         />
         <p className="max-w-xl text-base md:text-lg" />
@@ -46,9 +45,8 @@ export const Bento = () => {
         <Image
           src="/images/img/portada-energiaRenovable.webp"
           alt="Transforma tu energía con opciones limpias y sostenibles."
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="background transition-scale absolute bottom-0 left-0 top-0 -z-10 h-full w-full bg-blue-950 bg-cover bg-center bg-no-repeat opacity-90 bg-blend-luminosity duration-1000 ease-in-out group-hover:scale-110"
         />
         <p className="max-w-xl text-base md:text-lg" />
@@ -58,9 +56,8 @@ export const Bento = () => {
         <Image
           src="/images/img/portada-bombeo.webp"
           alt="Transforma tu energía con opciones limpias y sostenibles."
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="background transition-scale absolute bottom-0 left-0 top-0 -z-10 h-full w-full bg-blue-950 bg-cover bg-center bg-no-repeat opacity-90 bg-blend-luminosity duration-1000 ease-in-out group-hover:scale-110"
         />
         <p className="max-w-xl text-base md:text-lg"/>
@@ -70,9 +67,8 @@ export const Bento = () => {
         <Image
           src="/images/img/portada-termotanque.webp"
           alt="Transforma tu energía con opciones limpias y sostenibles."
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="background transition-scale absolute bottom-0 left-0 top-0 -z-10 h-full w-full bg-blue-950 bg-cover bg-center bg-no-repeat opacity-90 bg-blend-luminosity duration-1000 ease-in-out group-hover:scale-110"
         />
         <p className="max-w-xl text-base md:text-lg" />
