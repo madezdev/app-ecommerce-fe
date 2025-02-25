@@ -1,6 +1,6 @@
 import React from 'react'
-import ImageSlider from '../ui/image-slider/ImageSlider'
 import { imageHero } from '@/utils/hero-img'
+import ImageSlider from '@/components/ui/image-slider/ImageSlider'
 
 export const Hero = () => {
   return (

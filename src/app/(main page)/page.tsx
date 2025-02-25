@@ -1,34 +1,19 @@
-import { Bento } from '@/components/bento/bento'
-import { Hero } from '@/components/hero/hero'
-import { ProductCard } from '@/components/product/product-card'
-import { initialData } from '@/dataBase/seedProduct'
+import { Bento } from '@/components/home/bento/bento'
+import { FeaturedProducts } from '@/components/home/featured-products/featuredProducts'
+import { Hero } from '@/components/home/hero/hero'
 
 export default function Home () {
 
   return (
-    <div className=''>
+    <>
       <Hero />
       <div className='my-[20px]'>
         <Bento/>
       </div>
-      <div className='my-8'>
+      <section className='my-8 px-10'>
         <h2>productos destacados</h2>
-        {
-          initialData.products.map(p => {
-            return (
-              <ProductCard
-                key={p.supplierId}
-                slug={p.slug}
-                title={p.title}
-                brand={p.brand}
-                price={p.price}
-                image={p.images[0]}
-              />
-            )
-          })
-        }
-
-      </div>
-    </div>
+        <FeaturedProducts />
+      </section>
+    </>
   )
 }
