@@ -7,4 +7,7 @@ export interface IProductCard {
   brand: string
   price: number
   img: string
+  active?: boolean
+  outstanding?: boolean
+  category?: string
 }

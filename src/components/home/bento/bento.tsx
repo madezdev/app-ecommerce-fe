@@ -1,35 +1,11 @@
-'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { BentoItem } from './bento-item'
 
-export const Bento = () => {
-
-  useEffect(() => {
-    const backgrounds = document.querySelectorAll('.background') as NodeListOf<HTMLElement>
-
-    if (!window.IntersectionObserver) {
-      backgrounds.forEach((bkg) => {
-        bkg.style.backgroundImage = `url('${bkg.dataset.src}')`
-      })
-      return
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement
-          target.style.backgroundImage = `url('${target.dataset.src}')`
-          observer.unobserve(target)
-        }
-      })
-    }, { rootMargin: '100px' })
-
-    backgrounds.forEach((bkg) => observer.observe(bkg))
-  }, [])
+export const Bento = async () => {
 
   return (
-    <section className="w-full grid lg:grid-cols-10 auto-rows-[20rem] gap-4 mx-auto px-10 ">
+    <section className="w-full grid lg:grid-cols-10 auto-rows-[20rem] gap-4">
       <BentoItem className="col-span-10 lg:col-span-4" title="Climatización" subtitle={'Sistemas solares eficientes para climatización de piscinas.'} imageSlot={'/images/svg/climatizacion.svg'} >
         <Image
           src="/images/img/portada-climatizacion.webp"

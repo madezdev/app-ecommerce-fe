@@ -1,25 +1,17 @@
-import { IProductCard } from '@/interface/product-cards'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { strapiClient } from './strapi'
 const { STRAPI_HOST } = process.env
 
 export async function getProductCars () {
-  try {
-    const response = await strapiClient.get('/product-cards?populate=img')
+  return strapiClient('product-cards?fields[0]=title&fields[1]=description&fields[2]=brand&fields[3]=price&fields[4]=slug&fields[5]=supplierId&fields[6]=category&fields[7]=active&fields[8]=outstanding&populate[img][fields][0]=url')
+    .then((res) => {
+      return res.data.map((prod: any) => {
+        const { title, description, brand, price, slug, img: imgUrl, active, outstanding } = prod
+        console.log('imgUrl', imgUrl)
 
-    if (!response.data || !response.data.data) {
-      throw new Error('Invalid response structure')
-    }
-
-    return response.data.data.map((item: IProductCard & { img: { url: string } }) => {
-      const { id, title, description, price, brand, supplierId, slug, img } = item
-
-      // Verificar si img existe y tiene datos
-      const imgUrl = img?.url ? `${STRAPI_HOST}${img.url}` : null
-
-      return { id, title, description, price, brand, supplierId, slug, img: imgUrl }
+        const img = imgUrl.map((imgObj: any) => `${STRAPI_HOST}${imgObj.url}`)
+        return { title, description, brand, price, slug, img, active, outstanding }
+      })
     })
-  } catch (error: unknown) {
-    console.error('Error fetching product cards:', error)
-    return []
-  }
+    .catch((error) => console.error('Error fetching:', error))
 }

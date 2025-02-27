@@ -4,23 +4,23 @@ import { getProductCars } from '@/lib/get-product-cars'
 import { IProductCard } from '@/interface/product-cards'
 
 export const FeaturedProducts = async () => {
-  const data: IProductCard[] = await getProductCars() as IProductCard[]
+  const res = await getProductCars()
+  console.log('res', res)
+  const outstandingProducts = res.filter((p: IProductCard) => p.outstanding)
 
   return (
     <article className='w-full flex items-center justify-center gap-4 flex-wrap'>
-      {
-        data.map((p: IProductCard) => (
-          <ProductCard
-            key={p.slug}
-            slug={p.slug}
-            title={p.title}
-            description={p.description}
-            brand={p.brand}
-            price={p.price}
-            img={p.img}
-          />
-        ))
-      }
+      {outstandingProducts.map((p: IProductCard) => (
+        <ProductCard
+          key={p.slug}
+          slug={p.slug}
+          title={p.title}
+          description={p.description}
+          brand={p.brand}
+          price={p.price}
+          img={Array.isArray(p.img) ? p.img[0] : p.img}
+        />
+      ))}
     </article>
   )
 }

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_photovoltaic_type_currents",
+  "info": {
+    "displayName": "typeCurrent",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "typeCurrent": {
+      "type": "enumeration",
+      "enum": [
+        "monofasico",
+        "trifasico"
+      ]
+    }
+  }
+}

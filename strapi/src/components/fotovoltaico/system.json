@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_fotovoltaico_systems",
+  "info": {
+    "displayName": "system"
+  },
+  "options": {},
+  "attributes": {
+    "system": {
+      "type": "enumeration",
+      "enum": [
+        "monophase",
+        "triphase",
+        "hybrid"
+      ]
+    }
+  }
+}
