@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use server'
 import { strapiClient } from './strapi'
 const { STRAPI_HOST } = process.env
 
