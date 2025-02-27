@@ -41,7 +41,7 @@ export const BentoItem = ({ className, title, subtitle, children, contentSlot, i
           {title}
         </h2>
         {subtitle && (
-          <h3 className={`${paragraph.className} -mt-4 mb-4 text-[20px]  text-pyellow`}>
+          <h3 className={`${paragraph.className} -mt-4 mb-4 text-[20px] text-pyellow`}>
             {subtitle}
           </h3>
         )}

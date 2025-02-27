@@ -13,7 +13,7 @@ export const Footer = () => {
     <footer
       className='relative bg-sblue flex flex-col justify-between items-center pt-[40px] z-10 '
     >
-      <div className='flex flex-col justify-center items-center gap-4 w-full px-[40px] lg:px-[180px]'>
+      <div className='flex flex-col justify-center items-center gap-4 w-full container mx-auto px-4 md:px-0'>
         {/* logo */}
         <div className=' xl:flex xl:self-start justify-center items-center gap-4'>
           <Link href='/'

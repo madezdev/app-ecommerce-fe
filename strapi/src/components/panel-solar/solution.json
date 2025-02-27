@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_panel_solar_solutions",
+  "info": {
+    "displayName": "solution"
+  },
+  "options": {},
+  "attributes": {
+    "current": {
+      "type": "enumeration",
+      "enum": [
+        "monofasico",
+        "trifasico"
+      ]
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_cards",
+  "info": {
+    "singularName": "product-card",
+    "pluralName": "product-cards",
+    "displayName": "product-card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "brand": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 2
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "supplierId": {
+      "type": "string",
+      "required": true
+    },
+    "img": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "outstanding": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
