@@ -32,15 +32,15 @@ export const ProductCard = ({
       </div>
       <div className='flex flex-col justify-between min-h-[120px]'>
         <div>
-          <p className={`${titleFont.className} text-pretty text-[16px]`}>
+          <p className={`${titleFont.className} text-pretty text-[16px] text-sblue`}>
             {title}
           </p>
           <p
-            className={`${paragraph.className} text-balance text-[14px] text-ngrey/50 line-clamp-2`}>
+            className={`${paragraph.className} text-balance text-[14px] text-sblue/50 line-clamp-2`}>
             {description}
           </p>
           <p
-            className={`${paragraph.className} text-pretty text-[12px] text-ngrey/50`}>
+            className={`${paragraph.className} text-pretty text-[12px] text-sblue/50`}>
             {brand}
           </p>
         </div>
