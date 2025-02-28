@@ -1,6 +1,7 @@
 import { Bento } from '@/components/home/bento/bento'
 import { FeaturedProducts } from '@/components/home/featured-products/featuredProducts'
 import { Hero } from '@/components/home/hero/hero'
+import { SolutionHero } from '@/components/ui/solution-hero/solutionHero'
 import { titleFont } from '@/config/fonts'
 
 export default function Home () {
@@ -11,8 +12,11 @@ export default function Home () {
         <div className='my-[20px]'>
           <Bento />
         </div>
-        <section className='my-8 w-full bg-white p-8 rounded-md'>
-          <h2 className={`${titleFont.className} heading-xs`}>
+        <section className='my-8 w-full bg-white p-8 rounded-lg'>
+          <SolutionHero />
+        </section>
+        <section className='my-8 w-full bg-white p-8 rounded-lg'>
+          <h2 className={`${titleFont.className} heading-xs text-sblue`}>
             Estos productos te pueden interesar
           </h2>
           <FeaturedProducts />
