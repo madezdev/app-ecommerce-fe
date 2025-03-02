@@ -1,0 +1,128 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "panelSolar",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "brand": {
+      "type": "string",
+      "required": true
+    },
+    "supplierId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "product_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "product"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "img": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "characteristics": {
+      "displayName": "characteristics",
+      "type": "component",
+      "repeatable": false,
+      "component": "panel-solar.characteristics"
+    },
+    "model": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "stock": {
+      "type": "integer",
+      "required": true
+    },
+    "system": {
+      "displayName": "typeSystem",
+      "type": "component",
+      "repeatable": true,
+      "component": "photovoltaic.type-system"
+    },
+    "typeProduct": {
+      "displayName": "type",
+      "type": "component",
+      "repeatable": false,
+      "component": "fotovoltaico.type",
+      "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "productsSon"
+    },
+    "productsSon": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "products"
+    },
+    "tag": {
+      "displayName": "tag",
+      "type": "component",
+      "repeatable": true,
+      "component": "photovoltaic.tag"
+    },
+    "product_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-type.product-type",
+      "inversedBy": "products"
+    }
+  }
+}

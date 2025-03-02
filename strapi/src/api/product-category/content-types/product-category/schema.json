@@ -16,37 +16,21 @@
     }
   },
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "unique": true
-    },
-    "slug": {
-      "type": "uid",
-      "required": true,
-      "targetField": "name"
-    },
-    "description": {
-      "type": "text",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "fotovoltaico",
+        "movilidadElectrica",
+        "bombaSolar",
+        "termotanque",
+        "climatizacion"
       ]
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product",
+      "mappedBy": "product_category"
     }
   }
 }

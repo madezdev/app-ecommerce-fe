@@ -1,12 +1,18 @@
+
 ## Get product card
 GET http://localhost:1337/api/product-cards?fields[0]=title&fields[1]=description&fields[2]=brand&fields[3]=price&fields[4]=slug&fields[5]=supplierId&fields[6]=category&fields[7]=active&populate[img][fields][0]=url
 Authorization: Bearer 561a05944a869005ec60fc7987ba8f4eba9899107b55735745492e9519f46ad1657499030bb38a6d29fab01a7c735e83498b5937589f12a5a46f267bb026b6079e8cc1e4a65d7218fb67b5d03e5d8c5177e184feeedc0da3b22cd67408a76ff8891e9f17e41fe6cb56623cb7dd02c67bb16395e96e9985f7d876945d778d8bc2
 
 ###
 
-GET http://localhost:1337/api/product-categories?fields[0]=name&fields[1]=description&populate[image][fields][0]=url
+GET http://localhost:1337/api/product-categories
 Authorization: Bearer 561a05944a869005ec60fc7987ba8f4eba9899107b55735745492e9519f46ad1657499030bb38a6d29fab01a7c735e83498b5937589f12a5a46f267bb026b6079e8cc1e4a65d7218fb67b5d03e5d8c5177e184feeedc0da3b22cd67408a76ff8891e9f17e41fe6cb56623cb7dd02c67bb16395e96e9985f7d876945d778d8bc2
 
+###
+GET http://localhost:1337/api/discounts?fields[0]=title&fields[1]=description&populate[img][fields][0]=url
+Authorization: Bearer 561a05944a869005ec60fc7987ba8f4eba9899107b55735745492e9519f46ad1657499030bb38a6d29fab01a7c735e83498b5937589f12a5a46f267bb026b6079e8cc1e4a65d7218fb67b5d03e5d8c5177e184feeedc0da3b22cd67408a76ff8891e9f17e41fe6cb56623cb7dd02c67bb16395e96e9985f7d876945d778d8bc2
 
-
+###
+GET http://localhost:1337/api/products
+Authorization: Bearer 561a05944a869005ec60fc7987ba8f4eba9899107b55735745492e9519f46ad1657499030bb38a6d29fab01a7c735e83498b5937589f12a5a46f267bb026b6079e8cc1e4a65d7218fb67b5d03e5d8c5177e184feeedc0da3b22cd67408a76ff8891e9f17e41fe6cb56623cb7dd02c67bb16395e96e9985f7d876945d778d8bc2
 
