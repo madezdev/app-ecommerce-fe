@@ -8,7 +8,6 @@ export async function getProductCars () {
     .then((res) => {
       return res.data.map((prod: any) => {
         const { title, description, brand, price, slug, img: imgUrl, active, outstanding } = prod
-        console.log('imgUrl', imgUrl)
 
         const img = imgUrl.map((imgObj: any) => `${STRAPI_HOST}${imgObj.url}`)
         return { title, description, brand, price, slug, img, active, outstanding }
