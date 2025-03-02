@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_fotovoltaico_type_systems",
+  "info": {
+    "displayName": "type-system"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "on-grid",
+        "off-grid",
+        "hybrid"
+      ]
+    }
+  }
+}

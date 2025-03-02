@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_panel_solar_characteristics",
+  "info": {
+    "displayName": "characteristics"
+  },
+  "options": {},
+  "attributes": {
+    "dimensions": {
+      "type": "string",
+      "required": true
+    },
+    "weight": {
+      "type": "string",
+      "required": true
+    },
+    "celltype": {
+      "type": "string",
+      "required": true
+    },
+    "ratedOutput": {
+      "type": "string",
+      "required": true
+    },
+    "ratedVoltage": {
+      "type": "string",
+      "required": true
+    },
+    "ratedcurrent": {
+      "type": "string",
+      "required": true
+    },
+    "openircuitVoltage": {
+      "type": "string",
+      "required": true
+    },
+    "shortCircuitCurrent": {
+      "type": "string",
+      "required": true
+    },
+    "moduleEfficiency": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

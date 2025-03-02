@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_fotovoltaico_types",
+  "info": {
+    "displayName": "type"
+  },
+  "options": {},
+  "attributes": {
+    "typeProduct": {
+      "type": "enumeration",
+      "enum": [
+        "panel solar",
+        "inversor",
+        "accesorios",
+        "protecciones"
+      ]
+    }
+  }
+}
