@@ -9,6 +9,7 @@ interface SeedProduct {
   images: string[];
   stock: number;
   price: number;
+  iva: number;
   slug: string;
   category: 'photovoltaic' | 'solar pumps' | 'solar-thermal' | 'electric-mobility' | 'energy-storage' | 'smart-grid' | 'other';
   system?: typeSistem[];
@@ -20,7 +21,7 @@ interface SeedProduct {
   info?: string;
 }
 type typeSistem = 'on-grid' | 'off-grid' | 'hybrid';
-type typeCharacteristicSolar = {
+export type typeCharacteristicSolar = {
   dimensions: string;
   weight: string;
   celltype?: string;
@@ -63,22 +64,22 @@ export const initialData: SeedData = {
     {
       supplierId: 5960,
       title: 'Panel solar 450W - Bifacial - monocristalino - Black Frame - Astro N7s - Tier 1',
-      description: 'Inversor Híbrido 3.6kW 48V CC - 220V CA, MPPT 75A 125-550V CC, Máx potencia paneles 4.6kWp, baterías de litio hasta 2000Ah (Recomendado hasta 4 x 150Ah), Inyección a red (Ley Distribuída)',
       characteristics: [{ dimensions: '1762x1134x30', weight: '21.5', celltype: 'monocristalino', ratedOutput: '450', ratedVoltage: '32.94', ratedcurrent: '13.66', openircuitVoltage: '39.20', shortCircuitCurrent: '14.35', moduleEfficiency: '22.5' }],
       brand: 'Astronergy',
       model: 'Astro N7s',
       origin: 'China',
       images: ['ps-bi-astro-450W.webp', 'ps-bi-astro-450W_1.webp', 'ps-bi-astro-450W_2.webp'],
       stock: 50,
-      price: 250,
-      slug: 'panel-solar/astro-n7s-450w-bifacial-monocristalino-Tier-one-5960',
+      price: 91,
+      iva: 10.5,
+      slug: 'panel-solar-450wp-astroenrgy-5960',
       category: 'photovoltaic',
       system: ['on-grid', 'off-grid', 'hybrid'],
       type: 'solar-panels',
       tags: ['solar', 'panel', 'monocristalino', 'Black Frame', 'Astro N7s', '450W', 'Bifacial', 'high-efficiency', 'photovoltaic'],
       qualification: 5,
       opinions: ['Excelente panel solar', 'Muy buena calidad', 'Gran eficiencia'],
-      info: 'La serie ASTRO N7s utiliza tecnología ZBB-TF, que incluye la tecnología de celdas de alta eficiencia TOPCon 4.0 desarrollada por Astronergy. Esta tecnología de celdas de alta eficiencia TOPCon 4.0 se basa en la tecnología TOPCon de celdas de alta eficiencia de Astronergy, que ha sido probada en el mercado durante muchos años y ha demostrado ser altamente confiable y eficiente. La tecnología ZBB-TF de Astronergy es una tecnología de celdas de alta eficiencia que utiliza una estructura de celdas de alta eficiencia para mejorar la eficiencia de conversión de energía solar de los paneles solares. La tecnología ZBB-TF de Astronergy también utiliza una estructura de celdas de alta eficiencia para mejorar la resistencia a la degradación de los paneles solares y prolongar su vida útil.',
+      description: 'La serie ASTRO N7s utiliza tecnología ZBB-TF, que incluye la tecnología de celdas de alta eficiencia TOPCon 4.0 desarrollada por Astronergy. Esta tecnología de celdas de alta eficiencia TOPCon 4.0 se basa en la tecnología TOPCon de celdas de alta eficiencia de Astronergy, que ha sido probada en el mercado durante muchos años y ha demostrado ser altamente confiable y eficiente. La tecnología ZBB-TF de Astronergy es una tecnología de celdas de alta eficiencia que utiliza una estructura de celdas de alta eficiencia para mejorar la eficiencia de conversión de energía solar de los paneles solares. La tecnología ZBB-TF de Astronergy también utiliza una estructura de celdas de alta eficiencia para mejorar la resistencia a la degradación de los paneles solares y prolongar su vida útil.',
     },
     {
       supplierId: 5391,
@@ -91,6 +92,7 @@ export const initialData: SeedData = {
       images: ['solar-panel-3.jpg', 'solar-panel-4.jpg'],
       stock: 100,
       price: 150,
+      iva: 10.5,
       slug: 'panel-solar-290w-amerisolar-as-6p30-5391',
       category: 'photovoltaic',
       system: ['on-grid', 'off-grid', 'hybrid'],
@@ -113,6 +115,7 @@ export const initialData: SeedData = {
       images: ['battery-1.jpg', 'battery-2.jpg'],
       stock: 2,
       price: 1275,
+      iva: 21,
       tags: ['lithium-ion', 'battery', '200Ah', '12V', 'BLUNERY', 'high-efficiency', 'energy-storage'],
       characteristics: [{ dimensions: '218x240x522', weight: '22', nominalCapacity: '2400', nominalVoltage: '12', maximumDischargeCurrent: '100', maximumChargingCurrent: '100', máximaDoD: '100' }],
       slug: 'bateria-litio-monobloque-lfp-12v-200ah-blunery-5114',
@@ -134,6 +137,7 @@ export const initialData: SeedData = {
       images: ['battery-3.jpg', 'battery-4.jpg'],
       stock: 5,
       price: 1785,
+      iva: 21,
       tags: ['lithium-ion', 'battery', 'Growatt', 'AXE 5.0L', 'high-efficiency', 'energy-storage'],
       characteristics: [{ dimensions: '442x222x528', weight: '30', nominalCapacity: '5000', nominalVoltage: '51.2', maximumDischargeCurrent: '100', maximumChargingCurrent: '100', máximaDoD: '100' }],
       slug: 'bateria-growatt-axe-5.0l-para-inversores-spf-y-wit-5494',
@@ -155,6 +159,7 @@ export const initialData: SeedData = {
       images: ['inverter-1.jpg', 'inverter-2.jpg'],
       stock: 10,
       price: 1700,
+      iva: 21,
       tags: ['inverter', 'Goodwe', 'GW3648D-ES', 'hybrid', 'high-efficiency', 'smart-grid'],
       characteristics: [{ dimensions: '450x470x180', weight: '20', nominalPower: '3600', batteryVoltage: '48', maximunPVarrayPower: '5000', MPPToperatingVoltageRange: '125~550', chargingCurrent: '60', efficiency: '97.6', protectionDegree: 'IP65' }],
       slug: 'inversor-goodwe-gw3648d-es-hibrido-3.6kw-48v-3809',
@@ -176,6 +181,7 @@ export const initialData: SeedData = {
       images: ['inverter-3.jpg', 'inverter-4.jpg'],
       stock: 15,
       price: 2000,
+      iva: 21,
       tags: ['inverter', 'Growatt', 'SPF 5000TL HVM-48', 'hybrid', 'high-efficiency', 'smart-grid'],
       characteristics: [{ dimensions: '516x440x184', weight: '30', nominalPower: '5000', batteryVoltage: '48', maximunPVarrayPower: '6500', MPPToperatingVoltageRange: '125~550', chargingCurrent: '80', efficiency: '97.6', protectionDegree: 'IP65' }],
       slug: 'spf-5000tl-hvm-48-incl-ant-wifi-growatt-6010',
@@ -197,6 +203,7 @@ export const initialData: SeedData = {
       images: ['inverter-5.jpg', 'inverter-6.jpg'],
       stock: 20,
       price: 585.90,
+      iva: 21,
       tags: ['inverter', 'Growatt', 'MIN 5000TL-X2', 'high-efficiency', 'smart-grid'],
       characteristics: [{ dimensions: '450x470x180', weight: '20', nominalPower: '5000', batteryVoltage: '48', maximunPVarrayPower: '6500', MPPToperatingVoltageRange: '125~550', chargingCurrent: '80', efficiency: '97.6', protectionDegree: 'IP65' }],
       slug: 'min-5000tl-x2-inc-ant-wifi-x-growatt-5992',
@@ -216,6 +223,7 @@ export const initialData: SeedData = {
       images: ['solar-thermal-1.jpg', 'solar-thermal-2.jpg'],
       stock: 10,
       price: 500,
+      iva: 21,
       slug: 'termotanque-solar-tubo-de-vacio-150-litros-tanque-galvanizado-YPF-Solar-TS-TV150',
       tags: ['solar', 'led', 'street-light'],
       qualification: 4,
