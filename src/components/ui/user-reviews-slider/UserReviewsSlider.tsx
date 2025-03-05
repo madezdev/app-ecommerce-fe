@@ -45,7 +45,7 @@ export default function UserReviewsSlider ({ reviews }: UserReviewsSliderProps) 
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0)
 
     return (
-      <div className="p-4 bg-white w-[370px] ">
+      <div className="py-4 px-10 bg-white rounded-lg border border-sblue/20 mx-auto">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-gray-800">{review.username}</h3>
           <div className="flex items-center">
@@ -83,7 +83,7 @@ export default function UserReviewsSlider ({ reviews }: UserReviewsSliderProps) 
   }
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full max-w-[400px] mx-auto  ">
+    <div className="relative flex flex-col justify-between items-center w-[400px] self-end  ">
       <AnimatePresence mode="wait">
         <motion.div
           key={reviews[index].id}

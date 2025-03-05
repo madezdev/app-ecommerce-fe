@@ -7,26 +7,19 @@ import { formatPriceARS } from '@/constants/exchangeRate'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
 import Button from '../ui/button/button'
 import { MediosPagos } from '../ui/medios-pagos/mediosPagos'
-import { Detail } from './detail'
 import { useExchangeRate } from '@/hooks/useExchangeRate'
 
 interface Props {
   detail: Product
 }
 
-export const DetailsProducts = ({ detail }: Props) => {
+export const PurchaseProducts = ({ detail }: Props) => {
   const dolarBlue = useExchangeRate()
 
   const { title, price, iva, brand, stock } = detail
   return (
     <div className='flex h-auto gap-4 sticky top-40'>
-      {/* Sección izquierda con scroll */}
-      <section className='w-3/4  pr-4'>
-        <Detail product={detail} />
-      </section>
-
-      {/* Sección del carrito (sticky cuando llega arriba) */}
-      <section className='flex flex-col w-1/4 h-fit border border-sblue/20 rounded-lg p-4 '>
+      <section className='flex flex-col h-fit border border-sblue/20 rounded-lg p-4 '>
         <div className='self-end'>
           <FavoriteButton />
         </div>
@@ -45,7 +38,7 @@ export const DetailsProducts = ({ detail }: Props) => {
           </div>
           <div>
             <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{stock}</span></p>
-            <QuantitySelect />
+            <QuantitySelect max={stock} />
           </div>
 
           {/* Botones alineados abajo */}

@@ -1,5 +1,7 @@
-import { DetailsProducts } from '@/components/product/detailsProducts'
+import { Detail } from '@/components/product/detail'
+import { PurchaseProducts } from '@/components/product/purchaseProducts'
 import { ProductReviews } from '@/components/product/produtRewiew'
+import { QuestionsAndAnswers } from '@/components/product/questionsAndAnswers'
 import UserReviewsSlider from '@/components/ui/user-reviews-slider/UserReviewsSlider'
 import { titleFont } from '@/config/fonts'
 import { initialData } from '@/dataBase/seedProduct'
@@ -69,20 +71,30 @@ export default async function ({ params }: { params: Params }) {
         </div>
       </header>
       <div className='container mx-auto p-4 shadow-md bg-nwhite rounded-xl my-8 '>
-        {/* Product */}
-        {product && <DetailsProducts detail={product} />}
-        <article className='flex gap-6 items-start justify-start mt-10'>
-          <div className='w-1/3'>
-            <ProductReviews
-              averageRating={reviewsData.averageRating}
-              totalReviews={reviewsData.totalReviews}
-              distribution={reviewsData.distribution}
-            />
-          </div>
-          <div className='self-end'>
-            <UserReviewsSlider reviews={userReviewsData} />
-          </div>
-        </article>
+        {/*Detail Product */}
+        <div className='flex gap-4 w-full'>
+          <section className=' flex flex-col gap-10 w-3/4'>
+            {product && <Detail product={product} />}
+            <article>
+              <QuestionsAndAnswers />
+            </article>
+            <article className='flex justify-between  w-full'>
+
+              <ProductReviews
+                averageRating={reviewsData.averageRating}
+                totalReviews={reviewsData.totalReviews}
+                distribution={reviewsData.distribution}
+              />
+
+              <UserReviewsSlider reviews={userReviewsData} />
+
+            </article>
+          </section>
+          {/* Purchase Product */}
+          <section className='w-1/4 static top-0'>
+            {product && <PurchaseProducts detail={product} />}
+          </section>
+        </div>
       </div>
     </div>
   )
