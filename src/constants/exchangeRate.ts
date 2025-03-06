@@ -12,5 +12,5 @@ export const formatPriceARS = (price: number, dolarBlue: number) => {
   })}`
 }
 
-export const formatPriceUSD = (price: number, dolarBlue: number) =>
-  `$ ${convertToUSD(price, dolarBlue).toFixed(2)} * ${MARKUP}`
+export const formatPriceUSD = (price: number) =>
+  `USD ${(price * (1 + MARKUP)).toFixed(2)}`

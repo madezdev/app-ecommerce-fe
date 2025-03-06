@@ -30,6 +30,18 @@ export const Detail = ({ product }: Props) => {
     setZoomStyle({})
   }
 
+  const formatCharacteristics = (product: Product) => {
+    if (!product.characteristics || product.characteristics.length === 0) {
+      return []
+    }
+
+    const characteristicsObj = product.characteristics[0]
+    return Object.entries(characteristicsObj).map(([key, value]) => ({
+      label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), // Convierte camelCase a texto legible
+      value: value,
+    }))
+  }
+
   return (
     <div className='flex flex-col items-center gap-8'>
       {/* Imagen Principal con efecto lupa */}
@@ -69,7 +81,7 @@ export const Detail = ({ product }: Props) => {
         ))}
       </div>
       <article className='w-full flex justify-between'>
-        <ProductCharacteristics characteristics={product.characteristics || []} />
+        <ProductCharacteristics characteristics={formatCharacteristics(product)} title='Características del Producto'/>
         <div className='w-1/2 flex flex-col items-center gap-4'>
           <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Ficha técnica</h5>
           <DownloadTechnicalSheet  fileUrl='' fileName='ficha técnica'/>

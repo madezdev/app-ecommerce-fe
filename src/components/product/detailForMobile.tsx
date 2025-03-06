@@ -32,6 +32,18 @@ interface Props {
 
 export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props) => {
   const dolarBlue = useExchangeRate()
+
+  const formatCharacteristics = (product: Product) => {
+    if (!product.characteristics || product.characteristics.length === 0) {
+      return []
+    }
+
+    const characteristicsObj = product.characteristics[0]
+    return Object.entries(characteristicsObj).map(([key, value]) => ({
+      label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), // Convierte camelCase a texto legible
+      value: value,
+    }))
+  }
   return (
     <div className='flex flex-col items-center gap-4'>
       <div className='flex items-start justify-between w-full'>
@@ -52,7 +64,7 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
         </div>
 
         {/* Botones alineados abajo */}
-        <div className='flex flex-col gap-2 mt-auto'>
+        <div className='flex flex-col md:flex-row gap-2 mt-auto'>
           <Button variant='primary' fullWidth onClick={() => console.log('Agregado al carrito')}>
             Agregar al carrito
           </Button>
@@ -65,7 +77,7 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
       </div>
 
       <article className='w-full flex flex-col justify-between'>
-        <ProductCharacteristics characteristics={product.characteristics || []} />
+        <ProductCharacteristics characteristics={formatCharacteristics(product)} title='Características del Producto'/>
         <div className='lg:w-1/2 flex flex-col items-center gap-4 mt-8 lg:mt-0'>
           <h5 className={`${titleFont.className} text-[18px] lg:text-[20px] text-sblue`}>Ficha técnica</h5>
           <DownloadTechnicalSheet  fileUrl='' fileName='ficha técnica'/>
