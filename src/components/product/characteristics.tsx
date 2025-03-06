@@ -25,8 +25,8 @@ export const ProductCharacteristics = ({ characteristics }: Props) => {
   } = characteristics[0] // Solo se usa el primer objeto del array
 
   return (
-    <div className='w-1/2 '>
-      <h2 className={`${titleFont.className} text-[20px] text-sblue mb-4`}>Características del Producto</h2>
+    <div className='lg:w-1/2 '>
+      <h2 className={`${titleFont.className} text-[18px] lg:text-[20px] text-sblue mb-4`}>Características del Producto</h2>
       <table className='w-full border-collapse'>
         <tbody>
           <tr className='border-b p-2 bg-sblue/10 rounded-md'>

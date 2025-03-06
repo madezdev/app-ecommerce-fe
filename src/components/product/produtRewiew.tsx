@@ -30,7 +30,7 @@ export function ProductReviews ({
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0)
 
   return (
-    <div className="w-[400px]">
+    <div className="w-full max-w-[400px]">
       <p className={`${titleFont.className} text-[20px] text-sblue py-2`}>Opiniones sobre el producto</p>
       {/* Sección Promedio y Estrellas */}
       <div className="flex items-center mb-4">

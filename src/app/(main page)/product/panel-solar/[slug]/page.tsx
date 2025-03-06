@@ -6,6 +6,8 @@ import UserReviewsSlider from '@/components/ui/user-reviews-slider/UserReviewsSl
 import { titleFont } from '@/config/fonts'
 import { initialData } from '@/dataBase/seedProduct'
 import Image from 'next/image'
+import { DetailForMobile } from '@/components/product/detailForMobile'
+import { FavoriteButton } from '@/components/ui/favorite-button/favoriteButton'
 
 type Params = Promise<{ slug: string }>
 
@@ -50,14 +52,14 @@ export default async function ({ params }: { params: Params }) {
 
   return (
     <div className='bg-slate-50' >
-      <header className='relative h-[400px] w-full'>
+      <header className='relative h-[300px] lg:h-[400px] w-full'>
         {/* Fondo semitransparente */}
         <div className='absolute inset-0 bg-sblue bg-opacity-50 z-10'></div>
 
         {/* Imagen de fondo */}
         <Image
           src='/images/img/solares-cabecera.webp'
-          alt='Panel Solar'
+          alt={title}
           width={1920}
           height={300}
           className='absolute inset-0 h-full w-full object-cover object-center z-0'
@@ -65,14 +67,23 @@ export default async function ({ params }: { params: Params }) {
 
         {/* Título centrado */}
         <div className='absolute inset-0 flex items-center justify-center z-20 mt-[120px]'>
-          <h1 className={`${titleFont.className} text-nwhite heading-md font-medium`}>
+          <h1 className={`${titleFont.className} text-center text-nwhite heading-md font-medium`}>
             {title.toUpperCase()}
           </h1>
         </div>
       </header>
-      <div className='container mx-auto p-4 shadow-md bg-nwhite rounded-xl my-8 '>
-        {/*Detail Product */}
-        <div className='flex gap-4 w-full'>
+      <div className='md:container mx-4 lg:mx-auto p-4 shadow-md bg-nwhite rounded-xl my-8 '>
+        {/* Mobile */}
+        <div className='md:hidden'>
+          {product &&
+          <DetailForMobile
+            product={product}
+            reviewsData={reviewsData}
+            userReviewsData={userReviewsData}
+          />}
+        </div>
+        {/*Desktop */}
+        <div className='hidden md:flex gap-4 w-full '>
           <section className=' flex flex-col gap-10 w-3/4'>
             {product && <Detail product={product} />}
             <article>

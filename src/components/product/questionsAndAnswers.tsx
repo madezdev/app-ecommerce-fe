@@ -29,9 +29,9 @@ export const QuestionsAndAnswers = () => {
   }
 
   return (
-    <div className='p-4 border border-sblue/20 rounded-md'>
+    <div className='p-4 border border-sblue/20 rounded-md w-full'>
       <h2 className={`${titleFont.className} text-sblue text-[20px] pb-4`}>Preguntas y respuestas</h2>
-      <div className='mb-4 flex items-center gap-2'>
+      <div className='md:mb-4 flex flex-col md:flex-row items-center gap-4 md:gap-2 w-full'>
         <input
           type='text'
           className='border border-sblue/20 active:border-sblue max-w-[840px] rounded-lg p-3 w-full'
@@ -42,6 +42,7 @@ export const QuestionsAndAnswers = () => {
         <Button
           variant='action'
           onClick={handleAskQuestion}
+          fullWidth
         >
           Preguntar
         </Button>

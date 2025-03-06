@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { HeartIcon } from '../icon/heart-icon'

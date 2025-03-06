@@ -83,7 +83,7 @@ export default function UserReviewsSlider ({ reviews }: UserReviewsSliderProps) 
   }
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-[400px] self-end  ">
+    <div className="relative flex flex-col justify-between items-center w-full max-w-[400px] self-end  ">
       <AnimatePresence mode="wait">
         <motion.div
           key={reviews[index].id}
