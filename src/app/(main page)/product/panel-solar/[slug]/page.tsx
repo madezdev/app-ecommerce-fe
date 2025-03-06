@@ -7,7 +7,6 @@ import { titleFont } from '@/config/fonts'
 import { initialData } from '@/dataBase/seedProduct'
 import Image from 'next/image'
 import { DetailForMobile } from '@/components/product/detailForMobile'
-import { FavoriteButton } from '@/components/ui/favorite-button/favoriteButton'
 
 type Params = Promise<{ slug: string }>
 
@@ -51,7 +50,7 @@ export default async function ({ params }: { params: Params }) {
   const product = initialData.products.find( product => product.slug === slug )
 
   return (
-    <div className='bg-slate-50' >
+    <div className='bg-slate-50 overflow-hidden' >
       <header className='relative h-[300px] lg:h-[400px] w-full'>
         {/* Fondo semitransparente */}
         <div className='absolute inset-0 bg-sblue bg-opacity-50 z-10'></div>
@@ -72,9 +71,9 @@ export default async function ({ params }: { params: Params }) {
           </h1>
         </div>
       </header>
-      <div className='md:container mx-4 lg:mx-auto p-4 shadow-md bg-nwhite rounded-xl my-8 '>
+      <div className='xl:container mx-4 lg:mx-8 xl:mx-auto p-4 shadow-md  bg-nwhite rounded-xl my-8 '>
         {/* Mobile */}
-        <div className='md:hidden'>
+        <div className='lg:hidden'>
           {product &&
           <DetailForMobile
             product={product}
@@ -83,13 +82,13 @@ export default async function ({ params }: { params: Params }) {
           />}
         </div>
         {/*Desktop */}
-        <div className='hidden md:flex gap-4 w-full '>
-          <section className=' flex flex-col gap-10 w-3/4'>
+        <div className='hidden lg:flex gap-4 w-full '>
+          <section className=' flex flex-col gap-10  xl:w-3/4'>
             {product && <Detail product={product} />}
             <article>
               <QuestionsAndAnswers />
             </article>
-            <article className='flex justify-between  w-full'>
+            <article className='flex justify-between gap-8 w-full'>
 
               <ProductReviews
                 averageRating={reviewsData.averageRating}
@@ -102,7 +101,7 @@ export default async function ({ params }: { params: Params }) {
             </article>
           </section>
           {/* Purchase Product */}
-          <section className='w-1/4 static top-0'>
+          <section className='min-w-[300px] xl:w-1/4 static top-0'>
             {product && <PurchaseProducts detail={product} />}
           </section>
         </div>

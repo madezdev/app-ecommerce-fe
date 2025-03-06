@@ -79,7 +79,7 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
       <article className='w-full'>
         <QuestionsAndAnswers />
       </article>
-      <article className='flex flex-col items-center gap-8 w-full '>
+      <article className='flex flex-col items-center gap-8 w-full  '>
         <ProductReviews
           averageRating={reviewsData.averageRating}
           totalReviews={reviewsData.totalReviews}

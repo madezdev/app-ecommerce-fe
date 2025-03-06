@@ -42,7 +42,6 @@ export const QuestionsAndAnswers = () => {
         <Button
           variant='action'
           onClick={handleAskQuestion}
-          fullWidth
         >
           Preguntar
         </Button>
