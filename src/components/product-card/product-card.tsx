@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { paragraph, titleFont } from '@/config/fonts'
 import { formatPriceARS } from '@/constants/exchangeRate'
 import { IProductCard } from '@/interface/product-cards'
+import { useExchangeRate } from '@/hooks/useExchangeRate'
 
 export const ProductCard = ({
   title,
@@ -14,8 +15,7 @@ export const ProductCard = ({
   img,
   slug,
 }: IProductCard) => {
-  console.log('img', img)
-
+  const dolarBlue = useExchangeRate()
   return (
     <Link
       href={`/product/panel-solar/${slug}`}
@@ -46,7 +46,7 @@ export const ProductCard = ({
         </div>
         <span
           className={`${paragraph.className} text-balance text-[20px] text-sgreen`}>
-          {formatPriceARS(price)} <small>+ IVA</small>
+          {dolarBlue !== null ? formatPriceARS(price, dolarBlue) : '$'} <small> + IVA</small>
         </span>
       </div>
     </Link>

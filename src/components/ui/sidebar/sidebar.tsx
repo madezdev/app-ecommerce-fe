@@ -81,7 +81,7 @@ export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.
       {
         isSideMenuOpen && (
           <div
-            className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'
+            className='fixed top-0 left-0 w-screen h-screen z-30 bg-black opacity-30'
           />
 
         )
@@ -92,7 +92,7 @@ export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.
         isSideMenuOpen && (
           <div
             onClick={ closeMenu }
-            className='fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm'
+            className='fade-in fixed top-0 left-0 w-screen h-screen z-30 backdrop-filter backdrop-blur-sm'
           />
 
         )
@@ -102,7 +102,7 @@ export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.
       <nav
         className={
           clsx(
-            'fixed flex flex-col justify-between p-5 right-0 top-0 w-[320px] h-screen bg-[#F8FAFC] z-20 shadow-2xl transform transition-all duration-300 rounded-tl-xl rounded-bl-xl',
+            'fixed flex flex-col justify-between p-5 right-0 top-0 w-[320px] h-screen bg-[#F8FAFC] z-50 shadow-2xl transform transition-all duration-300 rounded-tl-xl rounded-bl-xl',
             {
               'translate-x-full': !isSideMenuOpen
             }

@@ -10,7 +10,7 @@ export default function Layout ({
 }) {
   return (
     <div className='relative min-h-screen overflow-x-hidden flex flex-col justify-between'>
-      <div className='absolute top-0 left-0 w-full z-10'>
+      <div className='absolute top-0 left-0 w-full z-20'>
         <TopInformation />
         <TopMenu />
       </div>

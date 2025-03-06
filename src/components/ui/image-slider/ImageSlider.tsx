@@ -11,14 +11,6 @@ interface Props {
 export default function ImageSlider ({ images, transitionDuration = 0.2 }: Props) {
   const [index, setIndex] = useState(0)
 
-  useEffect(() => {
-    const slideDuration = 5000 // Cambia este valor para modificar la duración de cambio de imagen
-    const interval = setInterval(() => {
-      nextSlide()
-    }, slideDuration)
-    return () => clearInterval(interval)
-  }, [index])
-
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % images.length)
   }
@@ -26,6 +18,14 @@ export default function ImageSlider ({ images, transitionDuration = 0.2 }: Props
   const prevSlide = () => {
     setIndex((prev) => (prev - 1 + images.length) % images.length)
   }
+
+  useEffect(() => {
+    const slideDuration = 5000 // Cambia este valor para modificar la duración de cambio de imagen
+    const interval = setInterval(() => {
+      nextSlide()
+    }, slideDuration)
+    return () => clearInterval(interval)
+  }, [index])
 
   return (
     <div className='relative flex flex-col justify-between items-center w-full h-auto overflow-hidden'>

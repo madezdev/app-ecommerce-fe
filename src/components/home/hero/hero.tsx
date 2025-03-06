@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { imageHero } from '@/utils/hero-img'
 import ImageSlider from '@/components/ui/image-slider/ImageSlider'

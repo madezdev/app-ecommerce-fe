@@ -5,6 +5,7 @@ import { IProductCard } from '@/interface/product-cards'
 
 export const FeaturedProducts = async () => {
   const res = await getProductCars()
+
   const outstandingProducts = res.filter((p: IProductCard) => p.outstanding)
 
   return (
