@@ -20,8 +20,8 @@ export default function Home () {
         <section className=' my-8 w-full '>
           <Discounts />
         </section>
-        <section className='my-8 w-full bg-white p-8 rounded-xl shadow-lg'>
-          <h2 className={`${titleFont.className} heading-xs text-sblue`}>
+        <section className='my-8 w-full bg-white p-4 rounded-xl shadow-lg'>
+          <h2 className={`${titleFont.className} heading-xs text-sblue text-pretty`}>
             Estos productos te pueden interesar
           </h2>
           <FeaturedProducts />
