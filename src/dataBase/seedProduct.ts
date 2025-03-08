@@ -91,7 +91,7 @@ export const initialData: SeedData = {
       origin: 'China',
       images: ['ps-bi-astro-450W.webp', 'ps-pl-amerisolar-290w.webp', 'ps-pl-amerisolar-290w_2.webp'],
       stock: 100,
-      price: 150,
+      price: 83.5,
       iva: 10.5,
       slug: 'panel-solar-290wp-amerisolar-5391',
       category: 'photovoltaic',

@@ -10,20 +10,18 @@ export default function () {
   return (
     <>
       <Header title='Carrito de compras' img='hero-cart-sostenible' />
-      <div className="container mx-auto flex justify-center items-center mb-72 mt-[20px] sm:px-0">
-        <div className="flex flex-col w-full">
-          <div className="flex flex-col lg:flex-row gap-10 w-full">
-            {/* Carrito */ }
-            <div className="flex flex-col gap-4 w-3/4">
-              <Title title='Tus productos' />
-              {/* Items */ }
-              <ProductsInCart />
-            </div>
+      <div className="xl:container mx-4 lg:mx-8 xl:mx-auto mb-[20px] lg:mb-72 mt-[20px] sm:px-0">
 
-            {/* Checkout - Resumen de orden */ }
-            <PurchaseSummary />
+        <Title title='Tus productos' />
+        <div className="flex flex-col items-center justify-between xl:flex-row xl:items-start gap-10 w-full mt-4">
+          {/* Carrito */ }
+          <div className="flex flex-col gap-4 w-full xl:w-3/4">
+            {/* Items */ }
+            <ProductsInCart />
           </div>
 
+          {/* Checkout - Resumen de orden */ }
+          <PurchaseSummary />
         </div>
 
       </div>

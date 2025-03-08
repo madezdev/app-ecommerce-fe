@@ -1,4 +1,4 @@
-const MARKUP = 0.35
+const MARKUP = 0.30
 
 export const convertToARS = (usd: number, dolarBlue: number) => usd * dolarBlue
 export const convertToUSD = (ars: number, dolarBlue: number) => ars / dolarBlue
