@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Button from '../ui/button/button'
 import { titleFont } from '@/config/fonts'
+import { Title } from '../ui/font-style/title'
 
 interface Question {
   id: number;
@@ -30,7 +31,7 @@ export const QuestionsAndAnswers = () => {
 
   return (
     <div className='p-4 border border-sblue/20 rounded-md w-full'>
-      <h2 className={`${titleFont.className} text-sblue text-[20px] pb-4`}>Preguntas y respuestas</h2>
+      <Title title='Preguntas y respuestas' />
       <div className='md:mb-4 flex flex-col md:flex-row items-center gap-4 md:gap-2 w-full'>
         <input
           type='text'

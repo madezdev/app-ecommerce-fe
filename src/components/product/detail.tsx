@@ -5,6 +5,7 @@ import { Product } from '@/interface/product'
 import { ProductCharacteristics } from './characteristics'
 import DownloadTechnicalSheet from './downloadTechnicalSheet'
 import { paragraph, titleFont } from '@/config/fonts'
+import { Title } from '../ui/font-style/title'
 
 interface Props {
   product: Product

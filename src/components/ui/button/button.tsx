@@ -7,6 +7,7 @@ interface AnimatedButtonProps {
   variant?: 'primary' | 'secondary' | 'action' | 'danger';
   fullWidth?: boolean;
   disabled?: boolean;
+  className?: string;
 }
 
 export default function Button ({
@@ -15,6 +16,7 @@ export default function Button ({
   variant = 'primary',
   fullWidth = false,
   disabled = false,
+  className,
 }: AnimatedButtonProps) {
   // Estilos según el tipo de botón
   const variants = {
@@ -33,6 +35,7 @@ export default function Button ({
       disabled={disabled}
       className={`
         ${variants[variant]} 
+        ${className}
         py-3 px-6 text-[16px] rounded-md 
         ${fullWidth ? 'w-full' : 'w-auto'}
         disabled:opacity-50 disabled:cursor-not-allowed
