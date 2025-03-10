@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 interface AnimatedButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'action' | 'danger';
+  variant?: 'primary' | 'secondary' | 'action' | 'danger' | 'outline';
   fullWidth?: boolean;
   disabled?: boolean;
   className?: string;
@@ -24,6 +24,7 @@ export default function Button ({
     secondary: 'bg-sblue text-nwhite',
     action: 'bg-[#3582fb] text-nwhite',
     danger: 'bg-red-500 text-white',
+    outline: 'border border-sblue text-sblue',
   }
 
   return (
@@ -36,7 +37,7 @@ export default function Button ({
       className={`
         ${variants[variant]} 
         ${className}
-        py-3 px-6 text-[16px] rounded-md 
+        py-2 px-6 text-[16px] rounded-md 
         ${fullWidth ? 'w-full' : 'w-auto'}
         disabled:opacity-50 disabled:cursor-not-allowed
       `}
