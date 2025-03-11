@@ -7,6 +7,7 @@ import { titleFont } from '@/config/fonts'
 import { initialData } from '@/dataBase/seedProduct'
 import Image from 'next/image'
 import { DetailForMobile } from '@/components/product/detailForMobile'
+import { BtnVolver } from '@/components/ui/btn-volver/btnVolver'
 
 type Params = Promise<{ slug: string }>
 
@@ -84,6 +85,7 @@ export default async function ({ params }: { params: Params }) {
         {/*Desktop */}
         <div className='hidden lg:flex gap-4 w-full '>
           <section className=' flex flex-col gap-10  xl:w-3/4'>
+            <BtnVolver path=''/>
             {product && <Detail product={product} />}
             <article>
               <QuestionsAndAnswers />

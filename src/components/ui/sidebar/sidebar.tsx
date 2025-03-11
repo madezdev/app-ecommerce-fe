@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
-import { useUIStore } from '@/store/sidebar.store'
-import clsx from 'clsx'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import clsx from 'clsx'
+import { useUIStore } from '@/store/sidebar.store'
 import { IoBagHandleOutline, IoBookOutline, IoChevronForward, IoCloseCircleOutline, IoEnterOutline, IoHeartOutline, IoHomeOutline, IoListOutline, IoMailOutline, IoPower, IoSearchOutline } from 'react-icons/io5'
 import { PiSolarPanelLight } from 'react-icons/pi'
 import { paragraph, titleFont } from '@/config/fonts'
@@ -73,6 +74,7 @@ const itemsMenu = [
 
 export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.isSideMenuOpen )
   const closeMenu = useUIStore( state => state.closeSideMenu )
+  const router = useRouter()
 
   return (
     <div>
@@ -120,6 +122,7 @@ export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.
             <span className={`${titleFont.className} text-[18px]`}>Martin Hernandez</span>
             <button
               className='flex items-center gap-1 text-[#333333]/50 hover:text-[#333333] transition-all'
+              onClick={ () => router.push('/profile') }
             >
               <small className='text-ngrey/70'>My perfil</small>
               <IoChevronForward />
