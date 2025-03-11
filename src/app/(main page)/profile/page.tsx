@@ -10,7 +10,7 @@ export default function ProfilePage () {
   const lastname = 'Hernandez'
   const email = 'madezdev@gmail.com'
   return (
-    <section className='max-w-[1000px] mx-auto px-4 md:px-0 mt-[160px] flex flex-col min-h-[calc(100vh-160px)]'>
+    <section className='max-w-[1000px] mx-auto px-4 md:px-8 mt-[160px] flex flex-col min-h-[calc(100vh-160px)]'>
       <BtnVolver path=''/>
       <article className='flex gap-8 p-4 max-w-[1000px] mb-8'>
         <Avatar
