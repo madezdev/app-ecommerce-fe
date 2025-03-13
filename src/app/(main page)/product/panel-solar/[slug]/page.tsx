@@ -1,13 +1,13 @@
+import Image from 'next/image'
 import { Detail } from '@/components/product/detail'
 import { PurchaseProducts } from '@/components/product/purchaseProducts'
 import { ProductReviews } from '@/components/product/produtRewiew'
 import { QuestionsAndAnswers } from '@/components/product/questionsAndAnswers'
 import UserReviewsSlider from '@/components/ui/user-reviews-slider/UserReviewsSlider'
 import { titleFont } from '@/config/fonts'
-import { initialData } from '@/dataBase/seedProduct'
-import Image from 'next/image'
 import { DetailForMobile } from '@/components/product/detailForMobile'
 import { BtnVolver } from '@/components/ui/btn-volver/btnVolver'
+import { initialData } from '@/dataBase/seedProduct'
 
 type Params = Promise<{ slug: string }>
 

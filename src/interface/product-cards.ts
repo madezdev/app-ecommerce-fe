@@ -10,4 +10,5 @@ export interface IProductCard {
   active?: boolean
   outstanding?: boolean
   category?: string
+  type?: string
 }

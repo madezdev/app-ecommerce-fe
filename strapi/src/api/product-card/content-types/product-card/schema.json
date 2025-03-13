@@ -64,13 +64,42 @@
       "default": false,
       "required": true
     },
-    "category": {
-      "type": "string",
-      "required": true
-    },
     "outstanding": {
       "type": "boolean",
       "default": false
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "fotovoltaico",
+        "termotanque",
+        "bomba",
+        "climatizacion"
+      ],
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "paneles solares",
+        "inversores híbridos",
+        "inversores on grid",
+        "inversores off grid",
+        "protecciones",
+        "baterías",
+        "controladores de carga",
+        "movilidad eléctrica",
+        "estructuras",
+        "cables",
+        "accesorios",
+        "tuvo de vacio",
+        "heat pipe",
+        "controlador de temperatura",
+        "ecopool",
+        "bombas difful",
+        "bombas grundfos"
+      ],
+      "required": true
     }
   }
 }

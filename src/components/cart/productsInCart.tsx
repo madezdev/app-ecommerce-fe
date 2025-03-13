@@ -6,6 +6,7 @@ import { initialData } from '@/dataBase/seedProduct'
 import { useExchangeRate } from '@/hooks/useExchangeRate'
 import Image from 'next/image'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
+import Link from 'next/link'
 
 const productsInCart = [
   initialData.products[0],
@@ -45,7 +46,9 @@ export const ProductsInCart = () => {
             </div>
 
             <div className="flex flex-col justify-center w-full">
-              <p className={`${paragraph.className} text-sblue text-[16px] font-medium leading-tight`}>{product.title}</p>
+              <Link href={`/product/panel-solar/${product.slug}`}>
+                <p className={`${paragraph.className} text-sblue text-[16px] font-medium leading-tight`}>{product.title}</p>
+              </Link>
               <div className="flex items-center justify-between mt-2">
                 <span className={`${paragraph.className} text-balance text-[20px] text-sgreen`}>
                   {dolarBlue !== null ? formatPriceARS(totalPrice, dolarBlue) : '$'}
