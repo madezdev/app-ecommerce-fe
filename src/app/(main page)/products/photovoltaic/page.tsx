@@ -30,11 +30,12 @@ export default function ProductsPage () {
   }, [selectedCategory, products] )
 
   return (
-    <div className='relative xl:container mx-4 lg:mx-8 xl:mx-auto flex gap-3 p-4 shadow-md bg-nwhite rounded-xl mt-[140px] mb-4'>
+    <div className='relative xl:container mx-4 lg:mx-8 xl:mx-auto flex flex-col md:flex-row items-center md:items-start gap-3 p-4 shadow-md bg-nwhite rounded-xl mt-[140px] mb-4'>
 
       {/* 📌 Sidebar de Categorías */ }
-      <div className='flex flex-col gap-4 bg-sblue/10 p-4 rounded-lg w-[300px]'>
-        <h2 className={ `${ titleFont.className } text-[18px] text-sblue font-semibold` }>Categorías</h2>
+      <div className='flex flex-col gap-4 bg-sblue/10 p-4 rounded-lg w-full md:w-[300px]'>
+        <h1 className={ `${ titleFont.className } text-[18px] text-sblue ` }>Productos fotovoltaico</h1>
+        <h2 className={ `${ titleFont.className } text-[16px] text-sblue ` }>Categorías</h2>
         <ul className='flex flex-col gap-2'>
           { categoryPhotovoltaic.map( ( c ) => (
             <li
@@ -51,7 +52,7 @@ export default function ProductsPage () {
       </div>
 
       {/* 📌 Lista de Productos */ }
-      <div className='w-full flex gap-4 flex-wrap'>
+      <div className='w-full flex gap-4 justify-around flex-wrap'>
         { filteredProducts.length > 0 ? (
           filteredProducts.map( ( p: IProductCard ) => (
             <ProductCard
