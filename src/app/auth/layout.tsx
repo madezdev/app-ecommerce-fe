@@ -4,9 +4,10 @@ export default function Layout ({
  children: React.ReactNode;
 }) {
   return (
-    <main className='min-h-screen'>
-      <h1>Hello Root Layout </h1>
-      {children}
+    <main className="flex justify-center">
+      <div className="w-full sm:w-[350px] px-10">
+        { children }
+      </div>
     </main>
   )
 }
