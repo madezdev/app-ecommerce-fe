@@ -438,7 +438,10 @@ export interface ApiProductCardProductCard extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     brand: Schema.Attribute.String & Schema.Attribute.Required;
-    category: Schema.Attribute.String & Schema.Attribute.Required;
+    category: Schema.Attribute.Enumeration<
+      ['fotovoltaico', 'termotanque', 'bomba', 'climatizacion']
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -474,6 +477,28 @@ export interface ApiProductCardProductCard extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    type: Schema.Attribute.Enumeration<
+      [
+        'paneles solares',
+        'inversores h\u00EDbridos',
+        'inversores on grid',
+        'inversores off grid',
+        'protecciones',
+        'bater\u00EDas',
+        'controladores de carga',
+        'movilidad el\u00E9ctrica',
+        'estructuras',
+        'cables',
+        'accesorios',
+        'tuvo de vacio',
+        'heat pipe',
+        'controlador de temperatura',
+        'ecopool',
+        'bombas difful',
+        'bombas grundfos',
+      ]
+    > &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

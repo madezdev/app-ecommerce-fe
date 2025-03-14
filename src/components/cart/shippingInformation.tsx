@@ -2,13 +2,18 @@ import React from 'react'
 import { Title } from '../ui/font-style/title'
 import { paragraph } from '@/config/fonts'
 import Button from '../ui/button/button'
+import Link from 'next/link'
 
-export const ShippingInformation = () => {
+interface Props {
+  showButtonChange?: boolean
+}
+
+export const ShippingInformation = ({ showButtonChange = true }: Props) => {
   return (
     <div className="bg-white rounded-xl shadow-xl p-7 h-fit w-full max-w-[500px]">
       <Title title='Datos de envio' />
 
-      <div className="grid  grid-cols-[minmax(80px,150px)_1fr]">
+      <div className="grid  grid-cols-[minmax(80px,150px)_1fr] mt-4">
 
         <span className={`${paragraph.className} text-sblue/80 text-[16px]`}>Provincia</span>
         <span className={`${paragraph.className} text-right text-sblue text-[16px]`}>Buenos Aires</span>
@@ -28,17 +33,20 @@ export const ShippingInformation = () => {
         <span className={`${paragraph.className} text-right text-sblue text-[16px]`}>1766</span>
 
       </div>
-
-      <div className="mt-5 mb-2 w-full">
-        <Button
-          fullWidth
-          variant='action'
-          className="flex justify-center"
-        >
+      {
+        showButtonChange &&
+        <div className="mt-5 mb-2 w-full">
+          <Link href="/profile/address">
+            <Button
+              fullWidth
+              variant='action'
+              className="flex justify-center"
+            >
               Cambiar
-        </Button>
-
-      </div>
+            </Button>
+          </Link>
+        </div>
+      }
 
     </div>
   )

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Product } from '@/interface/product'
 import { FavoriteButton } from '../ui/favorite-button/favoriteButton'
 import { paragraph, titleFont } from '@/config/fonts'
@@ -14,6 +14,7 @@ interface Props {
 }
 
 export const PurchaseProducts = ({ detail }: Props) => {
+  const [quantity, setQuantity] = useState(1)
   const dolarBlue = useExchangeRate()
 
   const { title, price, iva, brand, stock } = detail
@@ -38,7 +39,10 @@ export const PurchaseProducts = ({ detail }: Props) => {
           </div>
           <div>
             <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{stock}</span></p>
-            <QuantitySelect max={stock} />
+            <QuantitySelect
+              max={stock}
+              value={quantity}
+              onChangeAction={setQuantity}/>
           </div>
 
           {/* Botones alineados abajo */}

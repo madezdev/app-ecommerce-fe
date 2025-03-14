@@ -61,7 +61,7 @@ const itemsMenu = [
   {
     icon: <IoBagHandleOutline size={ 20 } className='text-[#333333]'/>,
     title: 'Mis compras',
-    href: '/',
+    href: '/order',
     role: 2
   },
   {
@@ -138,7 +138,7 @@ export const Sidebar = () => {const isSideMenuOpen = useUIStore( state => state.
                 <li
                   key={ index }
                   className={` flex items-center gap-2 hover:bg-pyellow/50 p-1 rounded transition-all delay-50 cursor-pointer hover:shadow-md active:shadow-none active:scale-95 first:lg:hidden`}
-                  onClick={ () => closeMenu() }
+                  onClick={ () => { closeMenu(); router.push(`${item.href}`) } }
                 >
                   { item.icon }
                   <span className={`${paragraph.className} text-ngrey/80`}>{ item.title }</span>

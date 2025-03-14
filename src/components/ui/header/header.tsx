@@ -10,9 +10,9 @@ interface Props {
 
 export const Header = ({ title, img, className }: Props) => {
   return (
-    <header className='relative h-[200px] lg:h-[300px] w-full'>
+    <header className='relative h-[200px] lg:h-[200px] w-full'>
       {/* Fondo semitransparente */}
-      <div className='absolute inset-0 bg-sblue bg-opacity-50 z-10'></div>
+      <div className='absolute inset-0 bg-sblue/50 bg-opacity-50 z-10'></div>
 
       {/* Imagen de fondo */}
       <Image
@@ -24,7 +24,7 @@ export const Header = ({ title, img, className }: Props) => {
       />
 
       {/* Título centrado */}
-      <div className={`absolute inset-0 flex items-center justify-center z-20 mt-[120px] ${className}`}>
+      <div className={`absolute inset-0 flex items-center justify-center z-30 ${className}`}>
         <h1 className={`${titleFont.className} text-center text-nwhite heading-md font-medium`}>
           {title.toUpperCase()}
         </h1>
