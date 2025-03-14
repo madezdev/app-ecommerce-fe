@@ -110,7 +110,7 @@ export const TopMenu = () => {
 
         <div className='flex justify-end items-center gap-2'>
           <div className='flex justify-end items-center gap-4 lg:mr-[20px]'>
-            <Link href='/login'>
+            <Link href='/auth/login'>
               <Paragraph size='lg' color='nwhite' className='hidden lg:block hover:text-sblue focus:text-sblue hover:scale-105 transition-all duration-150'>Usuario</Paragraph>
             </Link>
             <button onClick={openSideMenu}>
