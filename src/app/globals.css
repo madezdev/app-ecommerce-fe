@@ -46,3 +46,5 @@
 .paragraph-xs {
   @apply text-xs md:text-sm lg:text-base;
 }
+
+

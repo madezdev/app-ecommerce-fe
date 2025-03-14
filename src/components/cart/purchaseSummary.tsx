@@ -7,9 +7,10 @@ import { paragraph } from '@/config/fonts'
 interface Props {
   path: 'checkout' | 'order'
   button?: 'Confirmar' | 'Pagar'
+  id?: number
 }
 
-export const PurchaseSummary = ({ path, button }: Props) => {
+export const PurchaseSummary = ({ path, button, id }: Props) => {
   return (
     <div className="bg-white rounded-xl shadow-xl p-7 h-fit w-full max-w-[500px]">
       <Title title='Resumen de compra' />
@@ -28,7 +29,7 @@ export const PurchaseSummary = ({ path, button }: Props) => {
       </div>
 
       <div className="mt-5 mb-2 w-full">
-        <Link href={`/${path}`}>
+        <Link href={`/${path}${id ? `/${id}` : ''}`}>
           <Button
             fullWidth
             className="flex justify-center"

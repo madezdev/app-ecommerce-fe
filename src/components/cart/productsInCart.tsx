@@ -52,9 +52,17 @@ export const ProductsInCart = ({ showQuantity = true }: Props) => {
             </div>
 
             <div className="flex flex-col justify-center w-full">
-              <Link href={`/product/panel-solar/${product.slug}`}>
-                <p className={`${paragraph.className} text-sblue text-[16px] font-medium leading-tight`}>{product.title}</p>
-              </Link>
+              {
+                showQuantity
+                  ? (
+                    <Link href={`/product/panel-solar/${product.slug}`}>
+                      <p className={`${paragraph.className} text-sblue text-[16px] font-medium leading-tight`}>{product.title}</p>
+                    </Link>
+                  ) : (
+                    <p className={`${paragraph.className} text-sblue text-[16px] font-medium leading-tight`}>{product.title}</p>
+                  )
+              }
+
               <div className="flex gap-2 mt-2">
                 <small className='text-porange'>Precio unitario</small>
                 <small className='text-porange'>{dolarBlue !== null ? formatPriceARS( calculateTotalPriceWithIVA(product.price, product.iva), dolarBlue) : ''  }</small>
@@ -99,7 +107,7 @@ export const ProductsInCart = ({ showQuantity = true }: Props) => {
                 )
               }
               { showQuantity && (
-                <button className="text-left mt-2 text-sm text-red-500 hover:text-red-700">
+                <button className="text-left text-sm text-red-500 hover:text-red-700">
                   Quitar
                 </button>
               )}
