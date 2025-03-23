@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "panelSolar",
+    "displayName": "product",
     "description": ""
   },
   "options": {
@@ -16,113 +16,106 @@
     }
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true
-    },
-    "description": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true
-    },
-    "brand": {
-      "type": "string",
-      "required": true
-    },
-    "supplierId": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "price": {
-      "type": "decimal",
-      "required": true
-    },
-    "slug": {
+    "supplierld": {
       "type": "uid",
       "required": true
     },
-    "product_category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product-category.product-category",
-      "inversedBy": "product"
-    },
-    "active": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "img": {
-      "type": "media",
-      "multiple": true,
+    "title": {
+      "type": "string",
       "required": true,
-      "allowedTypes": [
-        "images",
-        "files"
-      ]
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "characteristics": {
-      "displayName": "characteristics",
-      "type": "component",
-      "repeatable": false,
-      "component": "panel-solar.characteristics"
+    "description": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "model": {
+      "type": "string",
+      "required": true
+    },
+    "brand": {
       "type": "string"
     },
     "origin": {
       "type": "string"
     },
-    "stock": {
-      "type": "integer",
-      "required": true
+    "slug": {
+      "type": "uid"
     },
     "system": {
-      "displayName": "typeSystem",
-      "type": "component",
-      "repeatable": true,
-      "component": "photovoltaic.type-system"
+      "type": "enumeration",
+      "enum": [
+        "on_grid",
+        "off_grid",
+        "hibrid",
+        "heat_pipe",
+        "termosifon",
+        "otros"
+      ]
     },
-    "typeProduct": {
-      "displayName": "type",
-      "type": "component",
-      "repeatable": false,
-      "component": "fotovoltaico.type",
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true,
       "required": true
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "productsSon"
+    "information": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
     },
-    "productsSon": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "mappedBy": "products"
+    "pageCompany": {
+      "type": "string"
     },
-    "tag": {
-      "displayName": "tag",
-      "type": "component",
-      "repeatable": true,
-      "component": "photovoltaic.tag"
+    "logoCompany": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
-    "product_type": {
+    "category": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::product-type.product-type",
+      "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "price": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::price.price",
+      "mappedBy": "product"
+    },
+    "inventory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::inventory.inventory",
+      "mappedBy": "product"
+    },
+    "specification": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::system.system",
+      "inversedBy": "product"
     }
   }
 }

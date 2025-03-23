@@ -369,13 +369,12 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDiscountDiscount extends Struct.CollectionTypeSchema {
-  collectionName: 'discounts';
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
   info: {
-    description: '';
-    displayName: 'discount';
-    pluralName: 'discounts';
-    singularName: 'discount';
+    displayName: 'category';
+    pluralName: 'categories';
+    singularName: 'category';
   };
   options: {
     draftAndPublish: true;
@@ -389,28 +388,88 @@ export interface ApiDiscountDiscount extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    discounts: Schema.Attribute.Integer & Schema.Attribute.Required;
-    img: Schema.Attribute.Media<'images' | 'files'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::discount.discount'
+      'api::category.category'
     >;
+    name: Schema.Attribute.Enumeration<
+      ['fotovoltaico', 'termica', 'bombaSolar', 'climatizacion', 'otros']
+    >;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String &
+    subcategory: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::subcategory.subcategory'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInventoryInventory extends Struct.CollectionTypeSchema {
+  collectionName: 'inventories';
+  info: {
+    description: '';
+    displayName: 'inventory';
+    pluralName: 'inventories';
+    singularName: 'inventory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::inventory.inventory'
+    > &
+      Schema.Attribute.Private;
+    outstanding: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+      Schema.Attribute.DefaultTo<false>;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    stock: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPricePrice extends Struct.CollectionTypeSchema {
+  collectionName: 'prices';
+  info: {
+    description: '';
+    displayName: 'price';
+    pluralName: 'prices';
+    singularName: 'price';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    iva: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::price.price'> &
+      Schema.Attribute.Private;
+    price: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -434,14 +493,6 @@ export interface ApiProductCardProductCard extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    active: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
-    brand: Schema.Attribute.String & Schema.Attribute.Required;
-    category: Schema.Attribute.Enumeration<
-      ['fotovoltaico', 'termotanque', 'bomba', 'climatizacion']
-    > &
-      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -452,24 +503,14 @@ export interface ApiProductCardProductCard extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    img: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::product-card.product-card'
     >;
-    outstanding: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    price: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 2;
-        },
-        number
-      >;
+    price: Schema.Attribute.Relation<'oneToOne', 'api::price.price'>;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID & Schema.Attribute.Required;
-    supplierId: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -477,107 +518,6 @@ export interface ApiProductCardProductCard extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    type: Schema.Attribute.Enumeration<
-      [
-        'paneles solares',
-        'inversores h\u00EDbridos',
-        'inversores on grid',
-        'inversores off grid',
-        'protecciones',
-        'bater\u00EDas',
-        'controladores de carga',
-        'movilidad el\u00E9ctrica',
-        'estructuras',
-        'cables',
-        'accesorios',
-        'tuvo de vacio',
-        'heat pipe',
-        'controlador de temperatura',
-        'ecopool',
-        'bombas difful',
-        'bombas grundfos',
-      ]
-    > &
-      Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProductCategoryProductCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'product_categories';
-  info: {
-    description: '';
-    displayName: 'productCategory';
-    pluralName: 'product-categories';
-    singularName: 'product-category';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    category: Schema.Attribute.Enumeration<
-      [
-        'fotovoltaico',
-        'movilidadElectrica',
-        'bombaSolar',
-        'termotanque',
-        'climatizacion',
-      ]
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::product-category.product-category'
-    >;
-    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProductTypeProductType extends Struct.CollectionTypeSchema {
-  collectionName: 'product_types';
-  info: {
-    displayName: 'product-type';
-    pluralName: 'product-types';
-    singularName: 'product-type';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::product-type.product-type'
-    >;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
-    productType: Schema.Attribute.Enumeration<
-      ['panelSolar', 'inversor', 'accesorios']
-    > &
-      Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -588,7 +528,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
     description: '';
-    displayName: 'panelSolar';
+    displayName: 'product';
     pluralName: 'products';
     singularName: 'product';
   };
@@ -601,55 +541,50 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    active: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
-    brand: Schema.Attribute.String & Schema.Attribute.Required;
-    characteristics: Schema.Attribute.Component<
-      'panel-solar.characteristics',
-      false
-    >;
+    brand: Schema.Attribute.String;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
+    description: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    img: Schema.Attribute.Media<'images' | 'files', true> &
+    images: Schema.Attribute.Media<'images' | 'files', true> &
       Schema.Attribute.Required;
+    information: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    inventory: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::inventory.inventory'
+    >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::product.product'
     >;
-    model: Schema.Attribute.String;
+    logoCompany: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    model: Schema.Attribute.String & Schema.Attribute.Required;
     origin: Schema.Attribute.String;
-    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    product_category: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::product-category.product-category'
-    >;
-    product_type: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::product-type.product-type'
-    >;
-    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
-    productsSon: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::product.product'
-    >;
+    pageCompany: Schema.Attribute.String;
+    price: Schema.Attribute.Relation<'oneToOne', 'api::price.price'>;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID & Schema.Attribute.Required;
-    stock: Schema.Attribute.Integer & Schema.Attribute.Required;
-    supplierId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    system: Schema.Attribute.Component<'photovoltaic.type-system', true>;
-    tag: Schema.Attribute.Component<'photovoltaic.tag', true>;
+    slug: Schema.Attribute.UID;
+    specification: Schema.Attribute.Relation<'oneToOne', 'api::system.system'>;
+    supplierld: Schema.Attribute.UID & Schema.Attribute.Required;
+    system: Schema.Attribute.Enumeration<
+      ['on_grid', 'off_grid', 'hibrid', 'heat_pipe', 'termosifon', 'otros']
+    >;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -657,8 +592,82 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    typeProduct: Schema.Attribute.Component<'fotovoltaico.type', false> &
-      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubcategorySubcategory extends Struct.CollectionTypeSchema {
+  collectionName: 'subcategories';
+  info: {
+    displayName: 'subcategory';
+    pluralName: 'subcategories';
+    singularName: 'subcategory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subcategory.subcategory'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subcategory: Schema.Attribute.Enumeration<
+      [
+        'panelSolar',
+        'inversor ',
+        'baterias',
+        'controlador',
+        'kitSolar',
+        'accesorios',
+        'ferreteria',
+        'protecciones',
+        'esruturas',
+        'movilidad',
+        'termosolar',
+        'bombeoSolar',
+        'calefaccionSolar',
+        'otros',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSystemSystem extends Struct.CollectionTypeSchema {
+  collectionName: 'systems';
+  info: {
+    description: '';
+    displayName: 'specification';
+    pluralName: 'systems';
+    singularName: 'system';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::system.system'
+    > &
+      Schema.Attribute.Private;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    specification: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1174,11 +1183,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::discount.discount': ApiDiscountDiscount;
+      'api::category.category': ApiCategoryCategory;
+      'api::inventory.inventory': ApiInventoryInventory;
+      'api::price.price': ApiPricePrice;
       'api::product-card.product-card': ApiProductCardProductCard;
-      'api::product-category.product-category': ApiProductCategoryProductCategory;
-      'api::product-type.product-type': ApiProductTypeProductType;
       'api::product.product': ApiProductProduct;
+      'api::subcategory.subcategory': ApiSubcategorySubcategory;
+      'api::system.system': ApiSystemSystem;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

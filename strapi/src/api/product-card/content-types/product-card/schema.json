@@ -34,72 +34,15 @@
       },
       "required": true
     },
-    "brand": {
-      "type": "string",
-      "required": true
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
     },
     "price": {
-      "type": "decimal",
-      "required": true,
-      "min": 2
-    },
-    "slug": {
-      "type": "uid",
-      "required": true
-    },
-    "supplierId": {
-      "type": "string",
-      "required": true
-    },
-    "img": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "active": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "outstanding": {
-      "type": "boolean",
-      "default": false
-    },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "fotovoltaico",
-        "termotanque",
-        "bomba",
-        "climatizacion"
-      ],
-      "required": true
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "paneles solares",
-        "inversores híbridos",
-        "inversores on grid",
-        "inversores off grid",
-        "protecciones",
-        "baterías",
-        "controladores de carga",
-        "movilidad eléctrica",
-        "estructuras",
-        "cables",
-        "accesorios",
-        "tuvo de vacio",
-        "heat pipe",
-        "controlador de temperatura",
-        "ecopool",
-        "bombas difful",
-        "bombas grundfos"
-      ],
-      "required": true
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::price.price"
     }
   }
 }

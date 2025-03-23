@@ -34,14 +34,22 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
   const dolarBlue = useExchangeRate()
 
   const formatCharacteristics = (product: Product) => {
-    if (!product.characteristics || product.characteristics.length === 0) {
-      return []
+    // Verifica si `specification` está definido y no está vacío
+    if (!product.specification || product.specification.length === 0) {
+      return [] // Retorna un array vacío si no hay especificaciones
     }
 
-    const characteristicsObj = product.characteristics[0]
+    const characteristicsObj = product.specification[0]
+
+    // Verifica si `characteristicsObj` es un objeto válido
+    if (!characteristicsObj || typeof characteristicsObj !== 'object') {
+      return [] // Retorna un array vacío si no es un objeto válido
+    }
+
+    // Convierte el objeto en un array de características
     return Object.entries(characteristicsObj).map(([key, value]) => ({
       label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), // Convierte camelCase a texto legible
-      value: value,
+      value: typeof value === 'string' || typeof value === 'number' ? value : '',
     }))
   }
   return (
@@ -60,7 +68,11 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
         </div>
         <div>
           <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{product.stock}</span></p>
-          <QuantitySelect max={product.stock} />
+          <QuantitySelect
+            max={product.stock}
+            value={1}
+            onChangeAction={(newValue) => console.log(newValue)}
+          />
         </div>
 
         {/* Botones alineados abajo */}

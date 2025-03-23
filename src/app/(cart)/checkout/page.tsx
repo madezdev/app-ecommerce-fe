@@ -30,7 +30,7 @@ export default function CheckoutPage () {
           {/* Checkout - Resumen de orden */ }
           <div className="flex flex-col gap-4 flex-shrink-0">
             <ShippingInformation showButtonChange={false}/>
-            <PurchaseSummary path='order' id={123} button='Pagar' />
+            <PurchaseSummary path='order' id={123} button='Enviar orden' />
           </div>
         </div>
 

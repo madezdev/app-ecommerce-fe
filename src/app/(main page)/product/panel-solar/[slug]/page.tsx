@@ -49,6 +49,7 @@ export default async function ({ params }: { params: Params }) {
   console.log('title', title)
 
   const product = initialData.products.find( product => product.slug === slug )
+  console.log('product', product)
 
   return (
     <div className='bg-slate-50 overflow-hidden' >

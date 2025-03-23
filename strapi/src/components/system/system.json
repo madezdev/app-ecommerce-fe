@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_system_systems",
+  "info": {
+    "displayName": "system"
+  },
+  "options": {},
+  "attributes": {
+    "system": {
+      "type": "enumeration",
+      "enum": [
+        "on_grid",
+        "off_grid",
+        "hibrido"
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subcategories",
+  "info": {
+    "singularName": "subcategory",
+    "pluralName": "subcategories",
+    "displayName": "subcategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "subcategory": {
+      "type": "enumeration",
+      "enum": [
+        "panelSolar",
+        "inversor ",
+        "baterias",
+        "controlador",
+        "kitSolar",
+        "accesorios",
+        "ferreteria",
+        "protecciones",
+        "esruturas",
+        "movilidad",
+        "termosolar",
+        "bombeoSolar",
+        "calefaccionSolar",
+        "otros"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category",
+      "inversedBy": "subcategory"
+    }
+  }
+}

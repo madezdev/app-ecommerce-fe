@@ -6,7 +6,7 @@ import { paragraph } from '@/config/fonts'
 
 interface Props {
   path: 'checkout' | 'order'
-  button?: 'Confirmar' | 'Pagar'
+  button?: 'Confirmar' | 'Enviar orden'
   id?: number
 }
 

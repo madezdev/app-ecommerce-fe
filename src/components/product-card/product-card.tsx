@@ -23,7 +23,7 @@ export const ProductCard = ({
       className='flex flex-col justify-between p-4 rounded-lg shadow-md h-[400px] w-[240px] group cursor-pointer'>
       <div className='flex justify-center items-center h-[200px]'>
         <Image
-          src={img}
+          src={`/images/product/${img}`}
           alt={title}
           width={180}
           height={180}

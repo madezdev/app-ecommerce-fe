@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "fotovoltaico",
+        "termica",
+        "bombaSolar",
+        "climatizacion",
+        "otros"
+      ]
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "category"
+    },
+    "subcategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subcategory.subcategory",
+      "mappedBy": "category"
+    }
+  }
+}

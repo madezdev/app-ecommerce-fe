@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "inventories",
+  "info": {
+    "singularName": "inventory",
+    "pluralName": "inventories",
+    "displayName": "inventory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "stock": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "outstanding": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product",
+      "inversedBy": "inventory"
+    }
+  }
+}

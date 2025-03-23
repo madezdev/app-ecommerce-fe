@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prices",
+  "info": {
+    "singularName": "price",
+    "pluralName": "prices",
+    "displayName": "price",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "price": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "iva": {
+      "type": "decimal",
+      "default": 0,
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product",
+      "inversedBy": "price"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 'use client'
 import React, { useRef, useState, useEffect } from 'react'
 import { ProductCard } from '@/components/product-card/product-card'
-import { getProductCars } from '@/lib/get-product-cars'
 import { IProductCard } from '@/interface/product-cards'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
+import { initialData } from '@/dataBase/seedProduct'
 
 export const FeaturedProducts = () => {
   const [products, setProducts] = useState<IProductCard[]>([])
@@ -14,8 +14,19 @@ export const FeaturedProducts = () => {
   // Cargar productos destacados
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await getProductCars()
-      setProducts(res.filter((p: IProductCard) => p.outstanding))
+
+      const outstanding = initialData.products.filter((prod) => prod.price.outstanding === true)
+      const productCard = outstanding.map((prod) => {
+        return {
+          slug: prod.slug,
+          title: prod.title,
+          description: prod.description,
+          brand: prod.brand,
+          price: prod.price.price,
+          img: prod.images[0]
+        }
+      })
+      setProducts(productCard)
     }
     fetchProducts()
   }, [])
@@ -65,7 +76,7 @@ export const FeaturedProducts = () => {
               description={p.description}
               brand={p.brand}
               price={p.price}
-              img={Array.isArray(p.img) ? p.img[0] : p.img}
+              img={p.img}
             />
           </div>
         ))}

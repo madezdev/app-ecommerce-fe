@@ -15,6 +15,8 @@ interface Props {
 }
 
 export const ProductCharacteristics = ({ title, characteristics }: Props) => {
+  console.log('characteristics', characteristics)
+
   if (!characteristics.length) {
     return null
   }

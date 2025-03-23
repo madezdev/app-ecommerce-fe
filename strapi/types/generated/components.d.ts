@@ -115,6 +115,16 @@ export interface PhotovoltaicTypeSystem extends Struct.ComponentSchema {
   };
 }
 
+export interface SystemSystem extends Struct.ComponentSchema {
+  collectionName: 'components_system_systems';
+  info: {
+    displayName: 'system';
+  };
+  attributes: {
+    system: Schema.Attribute.Enumeration<['on_grid', 'off_grid', 'hibrido']>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -128,6 +138,7 @@ declare module '@strapi/strapi' {
       'photovoltaic.tag': PhotovoltaicTag;
       'photovoltaic.type-current': PhotovoltaicTypeCurrent;
       'photovoltaic.type-system': PhotovoltaicTypeSystem;
+      'system.system': SystemSystem;
     }
   }
 }

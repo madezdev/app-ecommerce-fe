@@ -1,9 +1,8 @@
 import React from 'react'
 import { Discount, ItemDiscounts } from './itemDiscounts'
-import { getDiscounts } from '@/lib/get-discounts'
+import { discounts } from '@/dataBase/discount'
 
 export const Discounts = async () => {
-  const discounts = await getDiscounts()
 
   return (
     <article>
