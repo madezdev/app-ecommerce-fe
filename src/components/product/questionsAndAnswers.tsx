@@ -32,7 +32,7 @@ export const QuestionsAndAnswers = () => {
   return (
     <div className='p-4 border border-sblue/20 rounded-md w-full'>
       <Title title='Preguntas y respuestas' />
-      <div className='md:mb-4 flex flex-col md:flex-row items-center gap-4 md:gap-2 w-full'>
+      <div className='md:mb-2 flex flex-col md:flex-row items-center gap-4 md:gap-2 w-full mt-2'>
         <input
           type='text'
           className='border border-sblue/20 active:border-sblue max-w-[840px] rounded-lg p-3 w-full'

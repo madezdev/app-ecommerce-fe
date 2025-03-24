@@ -77,14 +77,14 @@ export default async function ({ params }: { params: Params }) {
       </div>
       <div className='xl:container mx-4 lg:mx-8 xl:mx-auto p-4 shadow-md  bg-nwhite rounded-xl '>
         {/* Mobile */}
-        {/* <div className='lg:hidden'>
+        <div className='lg:hidden'>
           {product &&
           <DetailForMobile
             product={product}
             reviewsData={reviewsData}
             userReviewsData={userReviewsData}
           />}
-        </div> */}
+        </div>
         {/*Desktop */}
 
         <div className='hidden lg:flex gap-4 w-full '>

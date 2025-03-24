@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Product } from '@/interface/product'
 import { FavoriteButton } from '../ui/favorite-button/favoriteButton'
 import { paragraph, titleFont } from '@/config/fonts'
-import { formatPriceARS, formatPriceUSD } from '@/constants/exchangeRate'
+import { formatPriceARS } from '@/constants/exchangeRate'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
 import Button from '../ui/button/button'
 import { MediosPagos } from '../ui/medios-pagos/mediosPagos'
@@ -36,7 +36,7 @@ export const PurchaseProducts = ({ detail }: Props) => {
             <p className={`${paragraph.className} text-[16px] text-sblue/50`}>{product.description}</p>
             <small className='text-sblue/50'>{product.brand}</small>
           </div>
-          <div className='flex flex-col mb-8'>
+          <div className='flex flex-col'>
             <span className={`${paragraph.className} text-[32px] text-sgreen`}>
               {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
             </span>

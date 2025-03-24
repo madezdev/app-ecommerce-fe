@@ -32,26 +32,13 @@ interface Props {
 
 export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props) => {
   const dolarBlue = useExchangeRate()
-
-  const formatCharacteristics = (product: Product) => {
-    // Verifica si `specification` está definido y no está vacío
-    if (!product.specification || product.specification.length === 0) {
-      return [] // Retorna un array vacío si no hay especificaciones
-    }
-
-    const characteristicsObj = product.specification[0]
-
-    // Verifica si `characteristicsObj` es un objeto válido
-    if (!characteristicsObj || typeof characteristicsObj !== 'object') {
-      return [] // Retorna un array vacío si no es un objeto válido
-    }
-
-    // Convierte el objeto en un array de características
-    return Object.entries(characteristicsObj).map(([key, value]) => ({
-      label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), // Convierte camelCase a texto legible
-      value: typeof value === 'string' || typeof value === 'number' ? value : '',
+  const characteristics = product.specification
+    ? Object.entries(product.specification).map(([key, value]) => ({
+      label: key.replace(/_/g, ' ').replace(/^./, str => str.toUpperCase()),
+      value: String(value) // Convertir el valor a string para evitar errores
     }))
-  }
+    : []
+
   return (
     <div className='flex flex-col items-center gap-4'>
       <div className='flex items-start justify-between w-full'>
@@ -62,14 +49,14 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
       <div className='flex flex-col gap-4 w-full my-8'>
         <div className='flex flex-col mb-8'>
           <span className={`${paragraph.className} text-[28px] text-sgreen`}>
-            {dolarBlue !== null ? formatPriceARS(product.price, dolarBlue) : '$'} <small>+ IVA</small>
+            {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
           </span>
-          <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.iva}% IVA</small>
+          <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.price.iva}% IVA</small>
         </div>
         <div>
-          <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{product.stock}</span></p>
+          <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{product.stock.stock}</span></p>
           <QuantitySelect
-            max={product.stock}
+            max={product.stock.stock}
             value={1}
             onChangeAction={(newValue) => console.log(newValue)}
           />
@@ -89,7 +76,7 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
       </div>
 
       <article className='w-full flex flex-col justify-between'>
-        <ProductCharacteristics characteristics={formatCharacteristics(product)} title='Características del Producto'/>
+        <ProductCharacteristics characteristics={ characteristics } title='Características del Producto'/>
         <div className='lg:w-1/2 flex flex-col items-center gap-4 mt-8 lg:mt-0'>
           <h5 className={`${titleFont.className} text-[18px] lg:text-[20px] text-sblue`}>Ficha técnica</h5>
           <DownloadTechnicalSheet  fileUrl='' fileName='ficha técnica'/>
