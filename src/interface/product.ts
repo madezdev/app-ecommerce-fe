@@ -12,6 +12,7 @@ export interface Product {
   images: string[];
   stock: Inventory;
   price: Price;
+  warranty?: string;
   slug: string;
   category: number;
   system?: number;

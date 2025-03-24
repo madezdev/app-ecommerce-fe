@@ -17,10 +17,6 @@ interface Props {
 export const ProductCharacteristics = ({ title, characteristics }: Props) => {
   console.log('characteristics', characteristics)
 
-  if (!characteristics.length) {
-    return null
-  }
-
   return (
     <div className='lg:w-1/2'>
       <Title title={title} className='mb-4'/>
@@ -32,7 +28,7 @@ export const ProductCharacteristics = ({ title, characteristics }: Props) => {
               className={`border-b p-2 ${index % 2 === 0 ? 'bg-sblue/10 rounded-xl' : ''}`}
             >
               <td className={`${paragraph.className} text-[16px] text-sblue/80 py-1 px-2 `}>{char.label}:</td>
-              <td className={`${paragraph.className} text-[16px] text-sblue/80 py-1 px-2`}>
+              <td className={`${paragraph.className} text-right text-[16px] text-sblue/80 py-1 px-2`}>
                 {char.value} {char.unit || ''}
               </td>
             </tr>

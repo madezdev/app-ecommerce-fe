@@ -30,25 +30,12 @@ export const Detail = ({ product }: Props) => {
     setZoomStyle({})
   }
 
-  const formatCharacteristics = (product: Product) => {
-    // Verifica si `specification` está definido y no está vacío
-    if (!product.specification || product.specification.length === 0) {
-      return [] // Retorna un array vacío si no hay especificaciones
-    }
-
-    const characteristicsObj = product.specification[0]
-
-    // Verifica si `characteristicsObj` es un objeto válido
-    if (!characteristicsObj || typeof characteristicsObj !== 'object') {
-      return [] // Retorna un array vacío si no es un objeto válido
-    }
-
-    // Convierte el objeto en un array de características
-    return Object.entries(characteristicsObj).map(([key, value]) => ({
-      label: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), // Convierte camelCase a texto legible
-      value: typeof value === 'string' || typeof value === 'number' ? value : '',
+  const characteristics = product.specification
+    ? Object.entries(product.specification).map(([key, value]) => ({
+      label: key.replace(/_/g, ' ').replace(/^./, str => str.toUpperCase()),
+      value: String(value) // Convertir el valor a string para evitar errores
     }))
-  }
+    : []
 
   return (
     <div className='flex flex-col items-center gap-8'>
@@ -62,7 +49,7 @@ export const Detail = ({ product }: Props) => {
           src={`/images/product/${selectedImage}`}
           width={900}
           height={700}
-          alt='Producto'
+          alt={product.title}
           className='w-full h-full object-cover transition-transform duration-300 cursor-zoom-in'
           style={zoomStyle}
         />
@@ -82,22 +69,38 @@ export const Detail = ({ product }: Props) => {
               src={`/images/product/${img}`}
               width={64}
               height={64}
-              alt={`Miniatura ${index + 1}`}
+              alt={product.title}
               className='w-full h-full object-cover'
             />
           </button>
         ))}
       </div>
-      <article className='w-full flex justify-between'>
-        <ProductCharacteristics characteristics={formatCharacteristics(product)} title='Características del Producto'/>
-        <div className='w-1/2 flex flex-col items-center gap-4'>
-          <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Ficha técnica</h5>
-          <DownloadTechnicalSheet  fileUrl='' fileName='ficha técnica'/>
+      <article className='w-full flex justify-between gap-4'>
+        <ProductCharacteristics
+          characteristics={ characteristics }
+          title='Características del Producto'
+        />
+        <div className='w-1/2 flex flex-col gap-4 mt-10'>
+          <div>
+            <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Garantía</h5>
+            <p className={`${paragraph.className} text-[16px] text-sblue/80`}>{product.warranty}</p>
+          </div>
+          <div className='flex justify-between gap-4'>
+            <div className='flex flex-col gap-2'>
+              <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Ficha técnica</h5>
+              <DownloadTechnicalSheet  fileUrl='' fileName='ficha técnica'/>
+            </div>
+            <div className='flex flex-col gap-2'>
+              <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Garantia</h5>
+              <DownloadTechnicalSheet  fileUrl='' fileName='Garantia'/>
+            </div>
+
+          </div>
         </div>
       </article>
       <article className='w-full'>
         <h5 className={`${titleFont.className} text-[20px] text-sblue mb-4`}>Descripción del Producto</h5>
-        <p className={`${paragraph.className} text-pretty text-[18px] text-sblue/80`}>{product.description}</p>
+        <p className={`${paragraph.className} text-pretty text-[18px] text-sblue/80`}>{product.information}</p>
       </article>
     </div>
   )

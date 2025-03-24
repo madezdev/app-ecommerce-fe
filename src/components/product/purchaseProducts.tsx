@@ -14,10 +14,14 @@ interface Props {
 }
 
 export const PurchaseProducts = ({ detail }: Props) => {
+  console.log('detail', detail)
+
   const [quantity, setQuantity] = useState(1)
   const dolarBlue = useExchangeRate()
 
-  const { title, price, iva, brand, stock } = detail
+  const product = detail
+  console.log('product', product.price.iva)
+
   return (
     <div className='flex h-auto gap-4 sticky top-40'>
       <section className='flex flex-col h-fit border border-sblue/20 rounded-lg p-4 '>
@@ -27,20 +31,21 @@ export const PurchaseProducts = ({ detail }: Props) => {
         <div className='flex flex-col justify-between flex-grow gap-4'>
           <div>
             <h3 className={`${titleFont.className} text-sblue font-medium paragraph-md`}>
-              {title.toUpperCase()}
+              {product.title.toUpperCase()}
             </h3>
-            <small className='text-sblue/50'>{brand}</small>
+            <p className={`${paragraph.className} text-[16px] text-sblue/50`}>{product.description}</p>
+            <small className='text-sblue/50'>{product.brand}</small>
           </div>
           <div className='flex flex-col mb-8'>
             <span className={`${paragraph.className} text-[32px] text-sgreen`}>
-              {dolarBlue !== null ? formatPriceARS(price, dolarBlue) : '$'} <small>+ IVA</small>
+              {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
             </span>
-            <small className={`${paragraph.className} text-[16px] text-sgreen`}>{iva}% IVA</small>
+            <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.price.iva}% IVA</small>
           </div>
           <div>
-            <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{stock}</span></p>
+            <p className={`${paragraph.className} text-[16px] text-sblue/50 pb-2`}>Disponibles: <span>{product.stock.stock}</span></p>
             <QuantitySelect
-              max={stock}
+              max={product.stock.stock}
               value={quantity}
               onChangeAction={setQuantity}/>
           </div>

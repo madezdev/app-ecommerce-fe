@@ -49,7 +49,6 @@ export default async function ({ params }: { params: Params }) {
   console.log('title', title)
 
   const product = initialData.products.find( product => product.slug === slug )
-  console.log('product', product)
 
   return (
     <div className='bg-slate-50 overflow-hidden' >
@@ -73,20 +72,23 @@ export default async function ({ params }: { params: Params }) {
           </h1>
         </div>
       </header>
-      <div className='xl:container mx-4 lg:mx-8 xl:mx-auto p-4 shadow-md  bg-nwhite rounded-xl my-8 '>
+      <div className='container mx-auto p-4'>
+        <BtnVolver path=''/>
+      </div>
+      <div className='xl:container mx-4 lg:mx-8 xl:mx-auto p-4 shadow-md  bg-nwhite rounded-xl '>
         {/* Mobile */}
-        <div className='lg:hidden'>
+        {/* <div className='lg:hidden'>
           {product &&
           <DetailForMobile
             product={product}
             reviewsData={reviewsData}
             userReviewsData={userReviewsData}
           />}
-        </div>
+        </div> */}
         {/*Desktop */}
+
         <div className='hidden lg:flex gap-4 w-full '>
           <section className=' flex flex-col gap-10  xl:w-3/4'>
-            <BtnVolver path=''/>
             {product && <Detail product={product} />}
             <article>
               <QuestionsAndAnswers />

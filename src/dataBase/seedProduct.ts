@@ -48,12 +48,13 @@ export const initialData: SeedData = {
       images: ['ps-bi-astro.webp', 'ps-bi-astro-585W_1.webp', 'ps-bi-astro-585W_2.webp'],
       stock: getInventory('5912'),
       price: getPrice('5912'),
+      warranty: '30 años de garantía de potencia lineal, 15 años de garantía de producto',
       slug: 'panel-solar-585wp-astronergy-5912',
       category: 1,
       system: 6,
       subCategory: 1,
       tags: ['solar', 'panel', 'policristalino', '585W', 'astronergy', 'astro N5', 'high-efficiency', 'photovoltaic', 'bifacial'],
-      information: 'Panel solar 585W bifacial monocristalino Astro N5 - Tier 1, 144 celdas, 5BB, 30 años de garantía de potencia lineal, 15 años de garantía de producto, certificado por TÜV Rheinland. La serie ASTRO N5 emplea la tecnología de celdas TOPCon 4.0 tipo n de última generación, desarrollada por Astronergy, y obleas de silicio de gran tamaño de 182 mm, combinadas con tecnología SMBB. Gracias a su encapsulado de alta densidad, corte no destructivo y otros procesos avanzados, el producto mejora aún más el rendimiento y la fiabilidad de la generación de energía para satisfacer las necesidades de los clientes en cualquier escenario.',
+      information: 'Panel solar 585W bifacial monocristalino Astro N5 - Tier 1, 144 celdas, 5BB. Certificado por TÜV Rheinland. La serie ASTRO N5 emplea la tecnología de celdas TOPCon 4.0 tipo n de última generación, desarrollada por Astronergy, y obleas de silicio de gran tamaño de 182 mm, combinadas con tecnología SMBB. Gracias a su encapsulado de alta densidad, corte no destructivo y otros procesos avanzados, el producto mejora aún más el rendimiento y la fiabilidad de la generación de energía para satisfacer las necesidades de los clientes en cualquier escenario.',
       url: 'www.astronergy.com'
     },
     {
