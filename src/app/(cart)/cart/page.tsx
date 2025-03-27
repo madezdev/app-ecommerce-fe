@@ -1,5 +1,7 @@
 // import { redirect } from 'next/navigation'
 'use client'
+import Link from 'next/link'
+import { IoMenu } from 'react-icons/io5'
 import { Title } from '@/components/ui/font-style/title'
 import { ProductsInCart } from '@/components/cart/productsInCart'
 import { PurchaseSummary } from '@/components/cart/purchaseSummary'
@@ -7,9 +9,7 @@ import { ShippingInformation } from '@/components/cart/shippingInformation'
 import { BtnVolver } from '@/components/ui/btn-volver/btnVolver'
 import { Logo } from '@/components/ui/logo/logo'
 import { titleFont } from '@/config/fonts'
-import Link from 'next/link'
 import { Paragraph } from '@/components/ui/font-style/paragraph'
-import { IoMenu } from 'react-icons/io5'
 import { useUIStore } from '@/store/sidebar.store'
 
 export default function CartPage () {

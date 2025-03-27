@@ -36,5 +36,41 @@ export const initialPrice: Price[] = [
     iva: 10.5,
     outstanding: true,
     product_id: '5855'
+  },
+  {
+    price: 810,
+    iva: 21,
+    outstanding: false,
+    product_id: '5114'
+  },
+  {
+    price: 1200,
+    iva: 21,
+    outstanding: true,
+    product_id: '4568'
+  },
+  {
+    price: 990,
+    iva: 21,
+    outstanding: true,
+    product_id: '5234'
+  },
+  {
+    price: 3350,
+    iva: 21,
+    outstanding: true,
+    product_id: '4571'
+  },
+  {
+    price: 1680,
+    iva: 21,
+    outstanding: true,
+    product_id: '5218'
+  },
+  {
+    price: 1376.4,
+    iva: 21,
+    outstanding: true,
+    product_id: '5861'
   }
 ]

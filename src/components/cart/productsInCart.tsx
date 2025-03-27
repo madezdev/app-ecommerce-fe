@@ -7,7 +7,6 @@ import { formatPriceARS } from '@/constants/exchangeRate'
 import { initialData } from '@/dataBase/seedProduct'
 import { useExchangeRate } from '@/hooks/useExchangeRate'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
-import { p } from 'framer-motion/client'
 
 const productsInCart = [
   initialData.products[0],
@@ -36,7 +35,7 @@ export const ProductsInCart = ({ showQuantity = true }: Props) => {
     <>
       {productsInCart.map(product => {
         const quantity = quantities.get(product.slug) || 1
-        const priceWithIVA = calculateTotalPriceWithIVA(product.price, product.iva)
+        const priceWithIVA = calculateTotalPriceWithIVA(product.price.price, product.price.iva)
         const totalPrice = priceWithIVA * quantity
 
         return (
@@ -65,7 +64,7 @@ export const ProductsInCart = ({ showQuantity = true }: Props) => {
 
               <div className="flex gap-2 mt-2">
                 <small className='text-porange'>Precio unitario</small>
-                <small className='text-porange'>{dolarBlue !== null ? formatPriceARS( calculateTotalPriceWithIVA(product.price, product.iva), dolarBlue) : ''  }</small>
+                <small className='text-porange'>{dolarBlue !== null ? formatPriceARS( calculateTotalPriceWithIVA(product.price.price, product.price.iva), dolarBlue) : ''  }</small>
                 <small className='text-porange'>IVA incluido</small>
               </div>
               {
@@ -81,12 +80,12 @@ export const ProductsInCart = ({ showQuantity = true }: Props) => {
                       <div className="flex flex-col items-center">
                         <small className='text-sblue/50'>Cantidad</small>
                         <QuantitySelect
-                          max={product.stock}
+                          max={product.stock.stock}
                           value={quantity}
                           onChangeAction={newQuantity => handleQuantityChange(product.slug, newQuantity)}
                         />
                         <small className={`${paragraph.className} text-sblue/80 mt-1`}>
-                          Disponible {product.stock}
+                          Disponible {product.stock.stock} unidades
                         </small>
 
                       </div>
