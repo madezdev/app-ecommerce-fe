@@ -1,4 +1,4 @@
-import { Inventory } from '@/interface/ inventory'
+import { Inventory } from '@/interface/inventory'
 
 export const initialInventory: Inventory[] = [
   {
@@ -30,5 +30,36 @@ export const initialInventory: Inventory[] = [
     product_id: '5855',
     stock: 5,
     isActive: true
+  },
+  {
+    product_id: '5114',
+    stock: 5,
+    isActive: true
+  },
+  {
+    product_id: '4568',
+    stock: 5,
+    isActive: true
+  },
+  {
+    product_id: '5234',
+    stock: 5,
+    isActive: true
+  },
+  {
+    product_id: '4571',
+    stock: 5,
+    isActive: true
+  },
+  {
+    product_id: '5218',
+    stock: 5,
+    isActive: true
+  },
+  {
+    product_id: '5861',
+    stock: 5,
+    isActive: true
   }
+
 ]

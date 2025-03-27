@@ -37,7 +37,7 @@ export const PurchaseProducts = ({ detail }: Props) => {
             <small className='text-sblue/50'>{product.brand}</small>
           </div>
           <div className='flex flex-col'>
-            <span className={`${paragraph.className} text-[32px] text-sgreen`}>
+            <span className={`${paragraph.className} text-[28px] text-sgreen`}>
               {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
             </span>
             <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.price.iva}% IVA</small>

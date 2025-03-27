@@ -5,27 +5,40 @@ import { ProductCard } from '@/components/product-card/product-card'
 import { titleFont } from '@/config/fonts'
 import { categoryPhotovoltaic } from '@/constants/categoryProduct'
 import { IProductCard } from '@/interface/product-cards'
-import { getProductCars } from '@/lib/get-product-cars'
+import { initialData } from '@/dataBase/seedProduct'
 
 export default function ProductsPage () {
   const [products, setProducts] = useState<IProductCard[]>( [] )
   const [filteredProducts, setFilteredProducts] = useState<IProductCard[]>( [] )
-  const [selectedCategory, setSelectedCategory] = useState<string>( 'Todos los productos' ) // ✅ Valor por defecto
+  const [selectedCategory, setSelectedCategory] = useState<number>( 0 ) // ✅ Valor por defecto 'Todos los productos'
+  console.log('products', products)
 
   useEffect( () => {
     const fetchProducts = async () => {
-      const res = await getProductCars()
-      setProducts( res.filter( ( p: IProductCard ) => p.category === 'fotovoltaico' ) )
+      const product = initialData.products.filter((prod) => prod.stock.isActive === true)
+      const productCard = product.map((prod) => {
+        return {
+          slug: prod.slug,
+          title: prod.title,
+          description: prod.description,
+          brand: prod.brand,
+          price: prod.price.price,
+          img: prod.images[0],
+          category: prod.category,
+          subCategory: prod.subCategory
+        }
+      })
+      setProducts( productCard.filter( ( p: IProductCard ) => p.category === 1 ) ) // ✅ Filtra solo productos fotovoltaicos
     }
     fetchProducts()
   }, [] )
 
   // 🔹 Filtrar productos cuando cambia la categoría seleccionada
   useEffect( () => {
-    if ( selectedCategory === 'Todos los productos' ) {
+    if ( selectedCategory === 0 ) {
       setFilteredProducts( products ) // ✅ Muestra todos los productos
     } else {
-      setFilteredProducts( products.filter( ( p ) => p.type === selectedCategory ) )
+      setFilteredProducts( products.filter( ( p ) => p.subCategory === selectedCategory ) )
     }
   }, [selectedCategory, products] )
 
@@ -40,9 +53,9 @@ export default function ProductsPage () {
           { categoryPhotovoltaic.map( ( c ) => (
             <li
               key={ c.id }
-              onClick={ () => setSelectedCategory( c.value ) } // ✅ Selecciona la categoría correcta
+              onClick={ () => setSelectedCategory( c.id ) } // ✅ Selecciona la categoría correcta
               className={ clsx( `capitalize text-sm text-sblue hover:bg-pyellow/50 p-1 rounded transition-all delay-50 hover:shadow-md cursor-pointer`, {
-                'bg-pyellow/50': selectedCategory === c.value
+                'bg-pyellow/50': selectedCategory === c.id
               } ) }
             >
               { c.value }
@@ -52,7 +65,7 @@ export default function ProductsPage () {
       </div>
 
       {/* 📌 Lista de Productos */ }
-      <div className='w-full flex gap-4 justify-around flex-wrap'>
+      <div className='w-full flex gap-2 justify-around flex-wrap'>
         { filteredProducts.length > 0 ? (
           filteredProducts.map( ( p: IProductCard ) => (
             <ProductCard

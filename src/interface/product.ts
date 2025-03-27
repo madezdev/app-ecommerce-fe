@@ -3,6 +3,7 @@ import { Price } from './price'
 
 export interface Product {
   supplierId: string;
+  supplier: string;
   title: string;
   description: string;
   specification?: Record<string, string | number>;
@@ -23,6 +24,7 @@ export interface Product {
   logo?: string;
   reviews?: string[];
   questions?: string[];
+  partner?: string[];
 }
 
 export type System = [

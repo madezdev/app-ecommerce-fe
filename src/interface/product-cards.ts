@@ -9,6 +9,6 @@ export interface IProductCard {
   img: string
   active?: boolean
   outstanding?: boolean
-  category?: string
-  type?: string
+  category?: number
+  subCategory?: number
 }
