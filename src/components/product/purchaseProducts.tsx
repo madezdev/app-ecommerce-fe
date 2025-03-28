@@ -7,20 +7,16 @@ import { formatPriceARS } from '@/constants/exchangeRate'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
 import Button from '../ui/button/button'
 import { MediosPagos } from '../ui/medios-pagos/mediosPagos'
-import { useExchangeRate } from '@/hooks/useExchangeRate'
+import { useDolarStore } from '@/store/dolar.store'
 
 interface Props {
   detail: Product
 }
 
 export const PurchaseProducts = ({ detail }: Props) => {
-  console.log('detail', detail)
-
   const [quantity, setQuantity] = useState(1)
-  const dolarBlue = useExchangeRate()
-
+  const getDollarBlue = useDolarStore((state) => state.dolarBlue)
   const product = detail
-  console.log('product', product.price.iva)
 
   return (
     <div className='flex h-auto gap-4 sticky top-40'>
@@ -38,7 +34,7 @@ export const PurchaseProducts = ({ detail }: Props) => {
           </div>
           <div className='flex flex-col'>
             <span className={`${paragraph.className} text-[28px] text-sgreen`}>
-              {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
+              {getDollarBlue !== null ? formatPriceARS(product.price.price, getDollarBlue) : '$'} <small>+ IVA</small>
             </span>
             <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.price.iva}% IVA</small>
           </div>
