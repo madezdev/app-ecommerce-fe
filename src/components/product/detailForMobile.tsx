@@ -9,10 +9,10 @@ import DownloadTechnicalSheet from './downloadTechnicalSheet'
 import { formatPriceARS } from '@/constants/exchangeRate'
 import QuantitySelect from '../ui/quantity-select/quantitySelect'
 import Button from '../ui/button/button'
-import { useExchangeRate } from '@/hooks/useExchangeRate'
 import { ProductReviews } from './produtRewiew'
 import UserReviewsSlider from '../ui/user-reviews-slider/UserReviewsSlider'
 import { QuestionsAndAnswers } from './questionsAndAnswers'
+import { useDolarStore } from '@/store/dolar.store'
 
 interface Props {
   product: Product
@@ -31,7 +31,7 @@ interface Props {
 }
 
 export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props) => {
-  const dolarBlue = useExchangeRate()
+  const getDollarBlue = useDolarStore((state) => state.dolarBlue)
   const characteristics = product.specification
     ? Object.entries(product.specification).map(([key, value]) => ({
       label: key.replace(/_/g, ' ').replace(/^./, str => str.toUpperCase()),
@@ -49,7 +49,7 @@ export const DetailForMobile = ({ product, reviewsData, userReviewsData }: Props
       <div className='flex flex-col gap-4 w-full my-8'>
         <div className='flex flex-col mb-8'>
           <span className={`${paragraph.className} text-[28px] text-sgreen`}>
-            {dolarBlue !== null ? formatPriceARS(product.price.price, dolarBlue) : '$'} <small>+ IVA</small>
+            {getDollarBlue !== null ? formatPriceARS(product.price.price, getDollarBlue) : '$'} <small>+ IVA</small>
           </span>
           <small className={`${paragraph.className} text-[16px] text-sgreen`}>{product.price.iva}% IVA</small>
         </div>

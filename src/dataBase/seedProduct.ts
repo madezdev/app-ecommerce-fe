@@ -86,7 +86,8 @@ export const initialData: SeedData = {
       subCategory: 1,
       tags: ['solar', 'panel', 'monocristalino', 'Black Frame', 'Astro N7s', '450W', 'bifacial', 'high-efficiency', 'photovoltaic'],
       information: 'Panel solar 450W bifacial monocristalino Black Frame Astro N7s - Tier 1, 108 celdas, 5BB, 30 años de garantía de potencia lineal, 15 años de garantía de producto, certificado por TÜV Rheinland. Equipado con la tecnología de células solares TOPCon 4.0 de Astronergy, recientemente mejorada, que utiliza obleas de silicio rectangulares y la innovadora tecnología ZBB, el módulo completamente negro de 48 células alcanza una potencia de 460 W y una eficiencia de hasta un 23,0 %. No tiene barras colectoras, cintas tipo arpón ni puntos PAD. La incorporación de accesorios negros, como marcos, realza su estética. Su diseño elegante, con una dimensión única de <2 m² y un peso de <23 kg, facilita su instalación y manejo por una sola persona. Se adapta perfectamente a las aplicaciones residenciales, con las ventajas únicas de ser ligero, eficiente, de alta calidad y estético.',
-      url: 'www.astronergy.com'
+      url: 'www.astronergy.com',
+      partner: ['5856', '5391']
     },
     {
       supplierId: '5856',

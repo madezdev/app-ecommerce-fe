@@ -15,7 +15,6 @@ interface Props {
 }
 
 export const ProductCharacteristics = ({ title, characteristics }: Props) => {
-  console.log('characteristics', characteristics)
 
   return (
     <div className='lg:w-1/2'>
