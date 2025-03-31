@@ -8,6 +8,8 @@ import { titleFont } from '@/config/fonts'
 import { DetailForMobile } from '@/components/product/detailForMobile'
 import { BtnVolver } from '@/components/ui/btn-volver/btnVolver'
 import { initialData } from '@/dataBase/seedProduct'
+import { IProductCard } from '@/interface/product-cards'
+import { ProductCard } from '@/components/product-card/product-card'
 
 type Params = Promise<{ slug: string }>
 
@@ -46,9 +48,23 @@ export default async function ({ params }: { params: Params }) {
   const parts = slug.split('-')
   const lastWord = parts.pop()
   const title = parts.join(' ')
-  console.log('title', title)
+  const product = initialData.products.find((product) => product.slug === slug) as (typeof initialData.products[0] & { partner?: IProductCard[] }) | undefined
 
-  const product = initialData.products.find( product => product.slug === slug )
+  const productPartner = () => {
+    if (!product || !product.partner) {
+      return []
+    }
+    const productPartners = initialData.products.filter((p) => product.partner?.includes(p.supplierId))
+
+    return productPartners.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      brand: p.brand,
+      price: p.price.price,
+      img: p.images[0],
+    }))
+  }
 
   return (
     <div className='bg-slate-50 overflow-hidden' >
@@ -90,6 +106,16 @@ export default async function ({ params }: { params: Params }) {
         <div className='hidden lg:flex gap-4 w-full '>
           <section className=' flex flex-col gap-10  xl:w-3/4'>
             {product && <Detail product={product} />}
+            {/* Produtos que tienen relacion con el producto principal que se esta mostrando */}
+            <h5 className={`${titleFont.className} text-[20px] text-sblue`}>Produtos relacionados</h5>
+            <article className='flex items-start gap-4 w-full'>
+              {productPartner().length > 0 &&
+                productPartner().map((p) => (
+                  <div key={p.slug} className=''>
+                    <ProductCard product={p} />
+                  </div>
+                ))}
+            </article>
             <article>
               <QuestionsAndAnswers />
             </article>
