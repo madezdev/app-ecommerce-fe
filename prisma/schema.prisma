@@ -1,0 +1,422 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Enums para datos fijos
+
+// Enum para definir los sistemas
+enum SystemEnum {
+  on_grid
+  off_grid
+  hybrid
+  heat_pipe
+  termosifon
+  other
+}
+
+// Enum para subcategorías, basándose en el array typeSubCategory
+enum SubCategoryEnum {
+  panel_solar
+  inversor
+  baterias
+  controlador
+  kit_solar
+  accesorios
+  ferreteria
+  protecciones
+  esruturas
+  movilidad
+  termica
+  bombeoSolar
+  calefaccion_solar
+  otros
+}
+
+model Characteristic {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[] @relation("ProductCharacteristics")
+}
+
+model Inventory {
+  productId String  @id // Relacionado con Product.id
+  stock     Int
+  isActive  Boolean
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Price {
+  productId   String  @id // Relacionado con Product.id
+  price       Float
+  iva         Float
+  outstanding Boolean
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+// Tipo embebido para la dirección del supplier
+model Address {
+  id       String    @id @default(uuid())
+  street   String
+  city     String
+  state    String
+  zip      String
+  country  String
+  supplier Supplier?
+}
+
+model Supplier {
+  id        String    @id @default(uuid())
+  name      String
+  seller    String
+  email     String
+  phone     String
+  addressId String    @unique
+  address   Address   @relation(fields: [addressId], references: [id])
+  url       String
+  products  Product[]
+}
+
+model Question {
+  id        Int  @id @default(autoincrement())
+  productId String
+  content   String
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
+  answers   Answer[]
+}
+
+model Answer {
+  id         Int  @id @default(autoincrement())
+  questionId Int
+  content    String
+  createdAt  DateTime @default(now())
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+model Rating {
+  id        Int  @id @default(autoincrement())
+  productId String
+  value     Int // Por ejemplo, de 1 a 5
+  comment   String? // Comentario opcional
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model ProductImage {
+  id        Int  @id @default(autoincrement())
+  productId String
+  url       String // URL o path de la imagen
+  altText   String? // Texto alternativo opcional
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id              String           @id @default(uuid()) // Se usa el identificador del seed (por ejemplo, supplierId o product_id)
+  supplierId      String // Clave foránea hacia Supplier (campo "supplier" en el seed)
+  title           String
+  description     String
+  specification   Json
+  brand           String
+  model           String
+  origin          String
+  warranty        String? // Opcional
+  slug            String           @unique
+  category        Int
+  system          SystemEnum // Se reemplaza el Int por el enum SystemEnum
+  subCategory     SubCategoryEnum // Se reemplaza el Int por el enum SubCategoryEnum
+  tags            String  []
+  information     String
+  url             String
+  partner         String[]         @default([]) // Lista requerida, puede estar vacía
+  logo            String? // Opcional
+  // Relaciones
+  inventory       Inventory? // Se define sin @relation, ya que Inventory es el dueño de la relación
+  price           Price? // Se define sin @relation, ya que Price es el dueño de la relación
+  supplier        Supplier         @relation(fields: [supplierId], references: [id])
+  characteristics Characteristic[] @relation("ProductCharacteristics")
+  questions       Question[] // Preguntas de usuarios sobre el producto
+  ratings         Rating[] // Valoraciones del producto
+  images          ProductImage[] // Imágenes adicionales del producto
+}
+
+// model User {
+//   id        String   @id @default(cuid())
+//   name      String
+//   email     String   @unique
+//   password  String
+//   role      String   // Puede ser "admin", "user", etc.
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+// model Session {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model Cart {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model CartItem {
+//   id        String   @id @default(cuid())
+//   cartId    String
+//   productId String
+//   quantity  Int
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   cart      Cart     @relation(fields: [cartId], references: [id])
+//   product   Product  @relation(fields: [productId], references: [id])
+// }
+// model Order {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   total     Float
+//   status    String   // Puede ser "pending", "completed", "cancelled", etc.
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model OrderItem {
+//   id        String   @id @default(cuid())
+//   orderId   String
+//   productId String
+//   quantity  Int
+//   price     Float
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   order     Order    @relation(fields: [orderId], references: [id])
+//   product   Product  @relation(fields: [productId], references: [id])
+// }
+// model Review {
+//   id        String   @id @default(cuid())
+//   productId String
+//   userId    String
+//   rating    Int      // Rango de 1 a 5
+//   comment   String?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   product   Product  @relation(fields: [productId], references: [id])
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model Wishlist {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model WishlistItem {
+//   id        String   @id @default(cuid())
+//   wishlistId String
+//   productId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   wishlist  Wishlist @relation(fields: [wishlistId], references: [id])
+//   product   Product  @relation(fields: [productId], references: [id])
+// }
+// model Address {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   street    String
+//   city      String
+//   state     String
+//   zip       String
+//   country   String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model Payment {
+//   id        String   @id @default(cuid())
+//   orderId   String
+//   amount    Float
+//   method    String   // Puede ser "credit_card", "paypal", etc.
+//   status    String   // Puede ser "pending", "completed", "failed", etc.
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   order     Order    @relation(fields: [orderId], references: [id])
+// }
+// model Notification {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   message   String
+//   isRead    Boolean  @default(false)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+// model CartHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   cartId    String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   cart      Cart     @relation(fields: [cartId], references: [id])
+// }
+// model OrderHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   orderId   String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   order     Order    @relation(fields: [orderId], references: [id])
+// }
+// model WishlistHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   wishlistId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   wishlist  Wishlist @relation(fields: [wishlistId], references: [id])
+// }
+// model AddressHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   addressId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   address   Address  @relation(fields: [addressId], references: [id])
+// }
+// model PaymentHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   paymentId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   payment   Payment  @relation(fields: [paymentId], references: [id])
+// }
+// model NotificationHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   notificationId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   notification Notification @relation(fields: [notificationId], references: [id])
+// }
+// model CartItemHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   cartItemId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   cartItem  CartItem @relation(fields: [cartItemId], references: [id])
+// }
+// model OrderItemHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   orderItemId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   orderItem OrderItem @relation(fields: [orderItemId], references: [id])
+// }
+// model ReviewHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   reviewId  String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   review    Review   @relation(fields: [reviewId], references: [id])
+// }
+// model SupplierHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   supplierId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   supplier  Supplier @relation(fields: [supplierId], references: [id])
+// }
+// model ProductHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   productId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   product   Product  @relation(fields: [productId], references: [id])
+// }
+// model InventoryHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   inventoryId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   inventory Inventory @relation(fields: [inventoryId], references: [productId])
+// }
+// model PriceHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   priceId   String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   price     Price    @relation(fields: [priceId], references: [productId])
+// }
+// model CharacteristicHistory {
+//   id        String   @id @default(cuid())
+//   userId    String
+//   characteristicId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   characteristic Characteristic @relation(fields: [characteristicId], references: [id])
+// }
+
+// model QuestionHistory { 
+//   id        String   @id @default(uuid())
+//   userId    String
+//   questionId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   question  Question @relation(fields: [questionId], references: [id])
+// }
+// model AnswerHistory { 
+//   id        String   @id @default(uuid())
+//   userId    String
+//   answerId  String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   answer    Answer   @relation(fields: [answerId], references: [id])
+// }
+// model RatingHistory { 
+//   id        String   @id @default(uuid())
+//   userId    String
+//   ratingId  String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   rating    Rating   @relation(fields: [ratingId], references: [id])
+// }
+// model ProductImageHistory { 
+//   id        String   @id @default(uuid())
+//   userId    String
+//   productImageId String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User     @relation(fields: [userId], references: [id])
+//   productImage ProductImage @relation(fields: [productImageId], references: [id])
+// }
+

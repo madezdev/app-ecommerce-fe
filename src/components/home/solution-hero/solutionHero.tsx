@@ -1,8 +1,16 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useRef } from 'react'
 import { ItemSolution } from './itemSolution'
 import Image from 'next/image'
 
 export const SolutionHero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => console.error('Error reproduciendo el video:', error))
+    }
+  }, [])
   return (
 
     <div className="grid grid-cols-1 grid-rows-7 md:grid-cols-3 md:grid-rows-3 xl:grid-cols-4 xl:grid-rows-4 gap-4 justify-center items-center w-full">
@@ -13,6 +21,7 @@ export const SolutionHero = () => {
           loop
           muted
           playsInline
+          ref={videoRef}
           className="w-full h-[240px] object-cover object-center rounded-xl"
         ></video>
 
